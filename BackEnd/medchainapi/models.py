@@ -8,27 +8,27 @@ class Patient(models.Model):
     contact_address = models.CharField(max_length=42, unique=True)  # Адрес в блокчейне
 
     def __str__(self):
-        return f"Пациент {self.name} (ID: {self.patient_id})"
+        return f"Пациент {self.name} (ID: {self.patient_id}) родился {self.date_of_birth} с адресом: {self.contact_address}"
 
 
-class MedicalInstitution(models.Model):
+class MedicalOrganization(models.Model):
     organization_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
     contact_info = models.CharField(max_length=255)
 
     def __str__(self):
-        return f"Медицинское учреждение: {self.name} (ID: {self.organization_id})"
+        return f"Медицинское учреждение: {self.name} (ID: {self.organization_id}) находится: {self.address} связаться: {self.contact_info}"
 
 
 class Doctor(models.Model):
     doctor_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     public_key = models.CharField(max_length=255, unique=True)  # Публичный ключ для аутентификации
-    organization = models.ForeignKey(MedicalInstitution, on_delete=models.CASCADE, related_name="doctors")
+    organization = models.ForeignKey(MedicalOrganization, on_delete=models.CASCADE, related_name="doctors")
 
     def __str__(self):
-        return f"Врач {self.name} (ID: {self.doctor_id}), учреждение: {self.organization.name}"
+        return f"Врач {self.name} (ID: {self.doctor_id}), учреждение: {self.organization.name}, ключ аутентификации: {self.public_key}"
 
 
 class AccessRequest(models.Model):
@@ -39,7 +39,7 @@ class AccessRequest(models.Model):
     request_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Запрос {self.request_id} от {self.doctor.name} к {self.patient.name}, статус: {self.status}"
+        return f"Запрос {self.request_id} {self.request_date} от {self.doctor.name} к {self.patient.name}, статус: {self.status}"
 
 
 class ActionLog(models.Model):
