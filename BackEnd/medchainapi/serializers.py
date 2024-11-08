@@ -1,41 +1,30 @@
 from rest_framework import serializers
 
-from models import Patient, Doctor, AccessRequest, MedicalOrganization, ActionLog
+from .models import Patient, AccessRequest
 
 
 class PatientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Patient
-        fields = ['patient_id', 'name', 'date_of_birth', 'contact_address']
-
-
-class MedicalOrganizationSerializer(serializers.Serializer):
-    class Meta:
-        model = MedicalOrganization
-        fields = ['organization_id', 'name', 'address', 'contact_info']
-
-
-class DoctorSerializer(serializers.ModelSerializer):
-    organization_id = serializers.SlugRelatedField(slug_field='organization_id', read_only=True)
-
-    class Meta:
-        model = Doctor
-        fields = ['doctor_id', 'name', 'public_key', 'organization_id']
+        fields = ['patient_id', 'name', 'date_of_birth', 'contract_address']
 
 
 class AccessRequestSerializer(serializers.ModelSerializer):
-    doctor_id = serializers.SlugRelatedField(slug_field='doctor_id', read_only=True)
-    patient_id = serializers.SlugRelatedField(slug_field='patient_id', read_only=True)
-
     class Meta:
         model = AccessRequest
-        fields = ['request_id', 'doctor_id', 'patient_id', 'status', 'request_date']
+        fields = ['request_id']
 
 
-class ActionLogSerializer(serializers.ModelSerializer):
-    doctor_id = serializers.SlugRelatedField(slug_field='doctor_id', read_only=True)
-    patient_id = serializers.SlugRelatedField(slug_field='patient_id', read_only=True)
+class PatientSearchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Patient
+        fields = ['patient_id', 'name', 'date_of_birth', 'contract_address']
+
+
+class DoctorPatientListSerializer(serializers.ModelSerializer):
+    # TODO: Сделать работающее получение access_granted_date
+    access_granted_date = serializers.DateTimeField(source='access_requests.first.request_date', read_only=True)
 
     class Meta:
-        model = ActionLog
-        fields = ['log_id', 'patient_id', 'doctor_id', 'action_type', 'action_date']
+        model = Patient
+        fields = ['patient_id', 'name', 'date_of_birth', 'contract_address', 'access_granted_date']
