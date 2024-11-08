@@ -5,10 +5,10 @@ class Patient(models.Model):
     patient_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     date_of_birth = models.DateField()
-    contact_address = models.CharField(max_length=42, unique=True)  # Адрес в блокчейне
+    contract_address = models.CharField(max_length=42, unique=True)  # Адрес в блокчейне
 
     def __str__(self):
-        return f"Пациент {self.name} (ID: {self.patient_id}) родился {self.date_of_birth} с адресом: {self.contact_address}"
+        return f"Пациент {self.name} (ID: {self.patient_id}) родился {self.date_of_birth} с адресом: {self.contract_address}"
 
 
 class MedicalOrganization(models.Model):
