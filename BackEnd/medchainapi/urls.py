@@ -8,7 +8,8 @@ from .views import (PatientDataView,
                     UpdatePatientView,
                     DeletePatientView,
                     DoctorSearchView,
-                    ManageAccessView
+                    ManageAccessView,
+                    home
 )
 
 urlpatterns = [
@@ -20,5 +21,6 @@ urlpatterns = [
     path('patient/<int:patient_id>/update', UpdatePatientView.as_view(), name='update-patient'),
     path('patient/<int:patient_id>/delete', DeletePatientView.as_view(), name='delete-patient'),
     path('patient/<int:patient_id>/search-doctors', DoctorSearchView.as_view(), name='search-doctors'),
-    path('patient/<int:patient_id>/manage-access', ManageAccessView.as_view(), name='manage-access')
+    path('patient/<int:patient_id>/manage-access', ManageAccessView.as_view(), name='manage-access'),
+    path('home', home, name='home page'),
 ]
