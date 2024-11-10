@@ -29,7 +29,7 @@ class Doctor(models.Model):
     specialization = models.CharField(max_length=255)
 
     def __str__(self):
-        return f"Врач {self.name} (ID: {self.doctor_id}), учреждение: {self.organization.name}, ключ аутентификации: {self.public_key}, специализация: {specialization}"
+        return f"Врач {self.name} (ID: {self.doctor_id}), учреждение: {self.organization.name}, ключ аутентификации: {self.public_key}, специализация: {self.specialization}"
 
 
 class AccessRequest(models.Model):
