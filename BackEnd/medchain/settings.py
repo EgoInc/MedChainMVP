@@ -38,6 +38,7 @@ INSTALLED_APPS = [
 
     'drf_spectacular',
     'rest_framework',
+    'drf_yasg',
 
     'medchainapi'
 ]
