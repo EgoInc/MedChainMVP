@@ -121,7 +121,7 @@ class UpdatePatientView(APIView):
         description="Позволяет обновить данные пациента",
         request=UpdatePatientSerializer,
         responses={status.HTTP_200_OK: UpdatePatientSerializer,
-                   status.HTTP_400_BAD_REQUEST: 'Неверные данные'
+                   status.HTTP_400_BAD_REQUEST: 'Неверные данные',
                    status.HTTP_401_UNAUTHORIZED: 'Нет доступа'},
     )
     def put(self, request):
