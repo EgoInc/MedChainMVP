@@ -126,7 +126,7 @@ class UpdatePatientView(APIView):
                    status.HTTP_400_BAD_REQUEST: 'Неверные данные',
                    status.HTTP_401_UNAUTHORIZED: 'Нет доступа'},
     )
-    def put(self, request):
+    def put(self, request, patient_id):
         serializer = UpdatePatientSerializer(data=request.data)
         if serializer.is_valid():
             # TODO: реализовать логику обновления данных пациента
@@ -144,7 +144,7 @@ class DeletePatientView(APIView):
                    status.HTTP_400_BAD_REQUEST: 'Неверные данные',
                    status.HTTP_401_UNAUTHORIZED: 'Нет доступа'},
     )
-    def delete(self, request):
+    def delete(self, request, patient_id):
         serializer = DeletePatientSerializer(data=request.data)
         if serializer.is_valid():
             # TODO: реализовать логику удаления пациента
@@ -194,7 +194,7 @@ class ManageAccessView(APIView):
                    status.HTTP_400_BAD_REQUEST: 'Неверные данные',
                    status.HTTP_401_UNAUTHORIZED: 'Нет доступа'},
     )
-    def post(self, request):
+    def post(self, request, patient_id, doctor_id):
         serializer = ManageAccessSerializer(data=request.data)
         if serializer.is_valid():
             # TODO: прописать логику управления доступом
