@@ -98,6 +98,7 @@ class DoctorPatientListView(APIView):
         serializer = DoctorPatientListSerializer(response_data, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+
 class AddPatientView(APIView):
     @extend_schema(
         summary="Добавление пациента",
@@ -113,6 +114,7 @@ class AddPatientView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 class UpdatePatientView(APIView):
@@ -159,7 +161,7 @@ class DoctorSearchView(APIView):
         responses={status.HTTP_200_OK: DoctorSearchSerializer(many=True),
                    status.HTTP_400_BAD_REQUEST: 'Неверные данные'},
     )
-    def get(self, request):
+    def get(self, request, patient_id):
         # Заглушка данных TODO: сделать обращение к базе
         response_data = [
             {
@@ -178,10 +180,9 @@ class DoctorSearchView(APIView):
             }
         ]
         serializer = DoctorSearchSerializer(response_data, many=True)
-        if serializer.is_valid():
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        # if serializer.is_valid():
+        #     return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class ManageAccessView(APIView):

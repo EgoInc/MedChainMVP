@@ -51,7 +51,7 @@ class DeletePatientSerializer(serializers.ModelSerializer):
 class DoctorSearchSerializer(serializers.ModelSerializer):
     class Meta:
         model = Doctor
-        fields = ['doctor_id', 'name', 'specialization', 'contract_info']
+        fields = ['doctor_id', 'name', 'specialization']
 
 
 class ManageAccessSerializer(serializers.ModelSerializer):
