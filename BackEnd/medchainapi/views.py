@@ -88,7 +88,7 @@ class DoctorPatientListView(APIView):
             },
             {
                 "patient_id": 101,
-                "name": "Петров Петр Петрович",
+                "name": "Иванов Иван Иванович",
                 "date_of_birth": "2000-06-01T00:00:00+03:00",
                 "contract_address": "0x0000000000000000000000000000000000000000",
                 "access_granted_date": "2024-08-22T15:00:00+03:00",
