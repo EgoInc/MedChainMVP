@@ -26,9 +26,10 @@ class Doctor(models.Model):
     name = models.CharField(max_length=255)
     public_key = models.CharField(max_length=255, unique=True)  # Публичный ключ для аутентификации
     organization = models.ForeignKey(MedicalOrganization, on_delete=models.CASCADE, related_name="doctors")
+    specialization = models.CharField(max_length=255)
 
     def __str__(self):
-        return f"Врач {self.name} (ID: {self.doctor_id}), учреждение: {self.organization.name}, ключ аутентификации: {self.public_key}"
+        return f"Врач {self.name} (ID: {self.doctor_id}), учреждение: {self.organization.name}, ключ аутентификации: {self.public_key}, специализация: {specialization}"
 
 
 class AccessRequest(models.Model):

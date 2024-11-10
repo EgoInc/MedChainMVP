@@ -4,7 +4,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .serializers import PatientSerializer, AccessRequestSerializer, PatientSearchSerializer, \
-    DoctorPatientListSerializer
+    DoctorPatientListSerializer, AddPatientSerializer, UpdatePatientSerializer, \
+    DeletePatientSerializer, DoctorSearchSerializer, ManageAccessSerializer
 
 
 class PatientDataView(APIView):
@@ -96,3 +97,106 @@ class DoctorPatientListView(APIView):
 
         serializer = DoctorPatientListSerializer(response_data, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+class AddPatientView(APIView):
+    @extend_schema(
+        summary="Добавление пациента",
+        description="Позволяет зарегистрировать нового пациента",
+        request=AddPatientSerializer,
+        responses={status.HTTP_201_CREATED: AddPatientSerializer,
+                   status.HTTP_400_BAD_REQUEST: 'Неверные данные'},
+    )
+    def post(self, request):
+        serializer = AddPatientSerializer(data=request.data)
+        if serializer.is_valid():
+            # TODO: реализовать логику добавления пациента
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UpdatePatientView(APIView):
+    @extend_schema(
+        summary="Обновление данных пациента",
+        description="Позволяет обновить данные пациента",
+        request=UpdatePatientSerializer,
+        responses={status.HTTP_200_OK: UpdatePatientSerializer,
+                   status.HTTP_400_BAD_REQUEST: 'Неверные данные'
+                   status.HTTP_401_UNAUTHORIZED: 'Нет доступа'},
+    )
+    def put(self, request):
+        serializer = UpdatePatientSerializer(data=request.data)
+        if serializer.is_valid():
+            # TODO: реализовать логику обновления данных пациента
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class DeletePatientView(APIView):
+    @extend_schema(
+        summary="Удаление пациента",
+        description="Позволяет удалить аккаунт пациента",
+        request=DeletePatientSerializer,
+        responses={status.HTTP_204_NO_CONTENT: 'Пациент удален',
+                   status.HTTP_400_BAD_REQUEST: 'Неверные данные',
+                   status.HTTP_401_UNAUTHORIZED: 'Нет доступа'},
+    )
+    def delete(self, request):
+        serializer = DeletePatientSerializer(data=request.data)
+        if serializer.is_valid():
+            # TODO: реализовать логику удаления пациента
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class DoctorSearchView(APIView):
+    @extend_schema(
+        summary="Поиск врачей",
+        description="Позволяет пациенту найти врачей по полному ФИО, дате рождения или специальности.",
+        request=DoctorSearchSerializer,
+        responses={status.HTTP_200_OK: DoctorSearchSerializer(many=True),
+                   status.HTTP_400_BAD_REQUEST: 'Неверные данные'},
+    )
+    def get(self, request):
+        # Заглушка данных TODO: сделать обращение к базе
+        response_data = [
+            {
+                "doctor_id": 1,
+                "name": "Петров Петр Петрович",
+                "date_of_birth": "2000-06-01T00:00:00+03:00",
+                "contract_address": "0x0000000000000000000000000000000000000000",
+                "specialization": "Лор"
+            },
+            {
+                "doctor_id": 101,
+                "name": "Петров Петр Петрович",
+                "date_of_birth": "2011-08-03T00:00:00+03:00",
+                "contract_address": "0x1100000000000000000000000000000000000011",
+                "specialization": "Узист"
+            }
+        ]
+        serializer = DoctorSearchSerializer(response_data, many=True)
+        if serializer.is_valid():
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ManageAccessView(APIView):
+    @extend_schema(
+        summary="Управление доступом к данным пациента",
+        description="Позволяет пациенту выбрать врачей, которым дан доступ к его данным",
+        request=ManageAccessSerializer,
+        responses={status.HTTP_200_OK: ManageAccessSerializer,
+                   status.HTTP_400_BAD_REQUEST: 'Неверные данные',
+                   status.HTTP_401_UNAUTHORIZED: 'Нет доступа'},
+    )
+    def post(self, request):
+        serializer = ManageAccessSerializer(data=request.data)
+        if serializer.is_valid():
+            # TODO: прописать логику управления доступом
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
