@@ -37,4 +37,5 @@ urlpatterns = [
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='docs'),
     path('api/', include('medchainapi.urls')),  # Подключение маршрутов приложения
     path('api/swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='swagger-ui'),
+    path('', include('medchainapi.urls'))
 ]

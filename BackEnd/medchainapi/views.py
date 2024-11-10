@@ -2,7 +2,7 @@ from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.http import JsonResponse
+from django.http import HttpResponse
 
 from .serializers import PatientSerializer, AccessRequestSerializer, PatientSearchSerializer, \
     DoctorPatientListSerializer, AddPatientSerializer, UpdatePatientSerializer, \
@@ -10,10 +10,13 @@ from .serializers import PatientSerializer, AccessRequestSerializer, PatientSear
 
 
 def home(request):
-    return JsonResponse({
-        "message": "Добро пожаловать на сайт medchainapi!",
-        "description": "Это API для управления данными пациентов."
-    })
+    return HttpResponse("""<h2>Welcome to the MedChainAPI homepage!</h2>
+     <h3>This is an API for managing patients' data :)</h3> feel free to navigate: <h5>.../admin/</h5>
+<h5>.../api/schema/</h5> 
+<h5>.../api/docs/</h5>
+<h5>.../api/</h5>
+<h5>.../api/swagger/</h5> or try .../api/patient for more """
+    )
 
 
 
