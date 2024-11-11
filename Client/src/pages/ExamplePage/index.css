@@ -1,0 +1,14 @@
+.examplePage_container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.components_container {
+    height: 120px;
+    width: 60%;
+    background-color: rgba(164, 164, 164, 0.584);
+    border-radius: 20px;
+    border: 1px solid black;
+}
