@@ -33,13 +33,13 @@ class DoctorPatientListSerializer(serializers.ModelSerializer):
 class AddPatientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Patient
-        fields = ['patient_id', 'name', 'date_of_birth', 'contract_adress']
+        fields = ['patient_id', 'name', 'date_of_birth', 'contract_address']
 
 
 class UpdatePatientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Patient
-        fields = ['patient_id', 'name', 'date_of_birth', 'contract_adress']
+        fields = ['patient_id', 'name', 'date_of_birth', 'contract_address']
 
 
 class DeletePatientSerializer(serializers.ModelSerializer):
@@ -56,8 +56,8 @@ class DoctorSearchSerializer(serializers.ModelSerializer):
 
 class ManageAccessSerializer(serializers.ModelSerializer):
     is_blocked = serializers.BooleanField(required=False)
+
     # TODO: реализовать блокировку врачей пациентами
     class Meta:
         model = AccessRequest
-        fields = ['request_id', 'doctor_id', 'access_granted', 'is_blocked']
-
+        fields = ['request_id', 'is_blocked']  # TODO: Реализовать правильные поля
