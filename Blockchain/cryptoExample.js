@@ -52,11 +52,25 @@ async function decryptMedicalRecord(encryptedRecord, privateKey) {
   // Шифрование данных
   const encryptedRecord = await encryptMedicalRecord(medicalRecord);
   console.log('Зашифрованные данные:', encryptedRecord);
-
+  /*
+Зашифрованные данные: {
+  encryptedData: 'a7e30e26720551af49ac543a94bc94207e0f1d88cd04e8ae8bdb658505bdfd65f87877a50a89331c185a8544a1d11e31c17f4775f4d0eac04e3f12ab98b054f6a8e1440d0d642d067f47c253cecff3aaa57840a3f4ee33bb3ce4e8b7f24a955c3b24c789069017d2c0e60aa0d44db2267923ab6548f68b217f475d951ab102f41b916324d579b9b7df7a4ec545e4c65cae7324ea3d47eeef54515e0d57723680',
+  iv: '5f7cd73a92180898110cfc6ab137455c'
+}
+*/
+  
   // Дешифрование данных
   const decryptedRecord = await decryptMedicalRecord(
     encryptedRecord,
     patientPrivateKey
   );
   console.log('Расшифрованные данные:', decryptedRecord);
+  /*
+Расшифрованные данные: {
+  date: '01.01.24',
+  complaints: 'Боль в горле, температура 38',
+  diagnosis: 'ангина',
+  recommendations: 'хлоргекседин'
+}
+*/
 })();
