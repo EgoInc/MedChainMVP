@@ -6,7 +6,7 @@ from django.http import HttpResponse
 
 from .serializers import PatientSerializer, AccessRequestSerializer, PatientSearchSerializer, \
     DoctorPatientListSerializer, AddPatientSerializer, AccessRequestsListSerializer, \
-    DeletePatientSerializer, DoctorSearchSerializer, ManageAccessSerializer
+    AuthorizedDoctorsListSerializer, DoctorSearchSerializer, ManageAccessSerializer
 
 
 def home(request):
@@ -166,23 +166,34 @@ class AccessRequestsListView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class DeletePatientView(APIView):
+class AuthorizedDoctorsListView(APIView):
     @extend_schema(
-        summary="Удаление пациента",
-        description="Позволяет удалить аккаунт пациента",
-        request=DeletePatientSerializer,
-        responses={status.HTTP_204_NO_CONTENT: 'Пациент удален',
-                   status.HTTP_400_BAD_REQUEST: 'Неверные данные',
-                   status.HTTP_401_UNAUTHORIZED: 'Нет доступа'},
+        summary="Запрос на получение списка врачей с доступом",
+        description="Возвращает перечень врачей, которым пациент предоставил доступ к своим данным.",
+        responses={status.HTTP_200_OK: AuthorizedDoctorsListSerializer(many=True)},
     )
-    def delete(self, request, patient_id):
-        serializer = DeletePatientSerializer(data=request.data)
-        if serializer.is_valid():
-            # TODO: реализовать логику удаления пациента
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def get(self, request, patient_id):
+        # Заглушка данных TODO: сделать обращение к базе
+        response_data = [
+            {
+                "doctor_id": 1,
+                "doctor_name": "Иванов Иван Иванович",
+                "organization_id": 1,
+                "organization_name": "Поликлиника №1",
+                "access_date": "2024-06-15T13:00:27+03:00"
+            },
+            {
+                "doctor_id": 2,
+                "doctor_name": "Петров Петр Петрович",
+                "organization_id": 25,
+                "organization_name": "Санкт-Петербургская Клиническая Больница Российской Академии Наук",
+                "access_date": "2024-10-20T13:00:27+03:00"
+            }
+        ]
 
+
+        serializer = AuthorizedDoctorsListSerializer(response_data, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 class DoctorSearchView(APIView):
     @extend_schema(

@@ -42,16 +42,14 @@ class AccessRequestsListSerializer(serializers.Serializer):
         fields = ['request_id', 'doctor', 'status', 'request_date']
 
 
-class DeletePatientSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Patient
-        fields = ['patient_id']
-
-
-class DoctorSearchSerializer(serializers.ModelSerializer):
+class AuthorizedDoctorsListSerializer(serializers.Serializer):
+    # TODO: Сделать работающее получение access_date
+    access_date = serializers.DateTimeField(source='access_requests.first.request_date', read_only=True)
     class Meta:
         model = Doctor
-        fields = ['doctor_id', 'name', 'specialization']
+        fields = ['doctor_id', 'doctor_name', "organization_id", 'organization_name', 'access_date']
+
+
 
 
 class ManageAccessSerializer(serializers.ModelSerializer):

@@ -13,23 +13,24 @@ class Patient(models.Model):
 
 class MedicalOrganization(models.Model):
     organization_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=255)
+    organization_name = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
     contact_info = models.CharField(max_length=255)
 
     def __str__(self):
-        return f"Медицинское учреждение: {self.name} (ID: {self.organization_id}) находится: {self.address} связаться: {self.contact_info}"
+        return f"Медицинское учреждение: {self.organization_name} (ID: {self.organization_id}) находится: {self.address} связаться: {self.contact_info}"
 
 
 class Doctor(models.Model):
     doctor_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=255)
+    doctor_name = models.CharField(max_length=255)
     public_key = models.CharField(max_length=255, unique=True)  # Публичный ключ для аутентификации
-    organization = models.ForeignKey(MedicalOrganization, on_delete=models.CASCADE, related_name="doctors")
+    organization_name = models.ForeignKey(MedicalOrganization, on_delete=models.CASCADE, related_name="doctors")
+    organization_id = models.ForeignKey(MedicalOrganization, on_delete=models.CASCADE)
     specialization = models.CharField(max_length=255)
 
     def __str__(self):
-        return f"Врач {self.name} (ID: {self.doctor_id}), учреждение: {self.organization.name}, ключ аутентификации: {self.public_key}, специализация: {self.specialization}"
+        return f"Врач {self.doctor_name} (ID: {self.doctor_id}), учреждение: {self.organization_name}, ключ аутентификации: {self.public_key}, специализация: {self.specialization}"
 
 
 class AccessRequest(models.Model):
