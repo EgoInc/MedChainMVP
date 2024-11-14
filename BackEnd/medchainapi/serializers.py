@@ -36,10 +36,10 @@ class AddPatientSerializer(serializers.ModelSerializer):
         fields = ['patient_id', 'name', 'date_of_birth', 'contract_address']
 
 
-class UpdatePatientSerializer(serializers.ModelSerializer):
+class AccessRequestsListSerializer(serializers.Serializer):
     class Meta:
-        model = Patient
-        fields = ['patient_id', 'name', 'date_of_birth', 'contract_address']
+        model = AccessRequest
+        fields = ['request_id', 'doctor', 'status', 'request_date']
 
 
 class DeletePatientSerializer(serializers.ModelSerializer):

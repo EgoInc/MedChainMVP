@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from django.http import HttpResponse
 
 from .serializers import PatientSerializer, AccessRequestSerializer, PatientSearchSerializer, \
-    DoctorPatientListSerializer, AddPatientSerializer, UpdatePatientSerializer, \
+    DoctorPatientListSerializer, AddPatientSerializer, AccessRequestsListSerializer, \
     DeletePatientSerializer, DoctorSearchSerializer, ManageAccessSerializer
 
 
@@ -133,23 +133,37 @@ class AddPatientView(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
-class UpdatePatientView(APIView):
+class AccessRequestsListView(APIView):
     @extend_schema(
-        summary="Обновление данных пациента",
-        description="Позволяет обновить данные пациента",
-        request=UpdatePatientSerializer,
-        responses={status.HTTP_200_OK: UpdatePatientSerializer,
-                   status.HTTP_400_BAD_REQUEST: 'Неверные данные',
-                   status.HTTP_401_UNAUTHORIZED: 'Нет доступа'},
+        summary="Список запросов на доступ",
+        description="Позволяет посмотреть список запросов на доступ к данным пациента",
+        responses={status.HTTP_200_OK: AccessRequestsListSerializer(many=True)}
     )
-    def put(self, request, patient_id):
-        serializer = UpdatePatientSerializer(data=request.data)
-        if serializer.is_valid():
-            # TODO: реализовать логику обновления данных пациента
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def get(self, request, patient_id):
+        # TODO: реализовать логику просмотра списка запросов на доступ
+
+        response_data = [
+            {
+                "request_id": 1,
+                "doctor": "Иванов Иван Иванович",
+                "status": "подтверждено",
+                "request_date": "2024-06-15T13:00:27+03:00"
+            },
+            {
+                "request_id": 2,
+                "doctor": "Петров Петр Петрович",
+                "status": "отклонено",
+                "request_date": "2024-11-04T10:15:27+03:00"
+            },
+            {
+                "request_id": 3,
+                "doctor": "Сергеев Сергей Сергеевич",
+                "status": "ожидание",
+                "request_date": "2024-11-05T14:48:27+03:00"
+            }
+        ]
+        serializer = AccessRequestsListSerializer(response_data, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class DeletePatientView(APIView):

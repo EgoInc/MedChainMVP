@@ -33,8 +33,8 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
+    path('admin/add-patient', include('medchainapi.admin_urls')),
     path('admin/', admin.site.urls),
-    path('admin/add-patient', include('medchainapi.urls')),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='docs'),
     path('api/', include('medchainapi.urls')),  # Подключение маршрутов приложения
