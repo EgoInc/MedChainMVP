@@ -36,13 +36,13 @@ class AddPatientSerializer(serializers.ModelSerializer):
         fields = ['patient_id', 'name', 'date_of_birth', 'contract_address']
 
 
-class AccessRequestsListSerializer(serializers.Serializer):
+class AccessRequestsListSerializer(serializers.ModelSerializer):
     class Meta:
         model = AccessRequest
         fields = ['request_id', 'doctor', 'status', 'request_date']
 
 
-class AuthorizedDoctorsListSerializer(serializers.Serializer):
+class AuthorizedDoctorsListSerializer(serializers.ModelSerializer):
     # TODO: Сделать работающее получение access_date
     access_date = serializers.DateTimeField(source='access_requests.first.request_date', read_only=True)
     class Meta:
@@ -50,12 +50,9 @@ class AuthorizedDoctorsListSerializer(serializers.Serializer):
         fields = ['doctor_id', 'doctor_name', "organization_id", 'organization_name', 'access_date']
 
 
-
-
-class ManageAccessSerializer(serializers.ModelSerializer):
-    is_blocked = serializers.BooleanField(required=False)
-
-    # TODO: реализовать блокировку врачей пациентами
+class RespondSerializer(serializers.Serializer):
     class Meta:
+        approve = serializers.BooleanField()
         model = AccessRequest
-        fields = ['request_id', 'is_blocked']  # TODO: Реализовать правильные поля
+        fields = ['request_id', 'patient_id', 'approve']
+    # TODO: выполнить проверку существования запроса

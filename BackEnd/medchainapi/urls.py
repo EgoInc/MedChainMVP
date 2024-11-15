@@ -6,8 +6,7 @@ from .views import (PatientDataView,
                     DoctorPatientListView,
                     AccessRequestsListView,
                     AuthorizedDoctorsListView,
-                    DoctorSearchView,
-                    ManageAccessView,
+                    RespondView,
                     home
 )
 
@@ -18,7 +17,6 @@ urlpatterns = [
     path('doctor/<int:doctor_id>/my-patients', DoctorPatientListView.as_view(), name='patients_of_doctor'),
     path('patient/<int:patient_id>/access-requests', AccessRequestsListView.as_view(), name='access_requests'),
     path('patient/<int:patient_id>/authorized-doctors', AuthorizedDoctorsListView.as_view(), name='authorized-doctors'),
-    path('patient/<int:patient_id>/search-doctors', DoctorSearchView.as_view(), name='search-doctors'),
-    path('patient/<int:patient_id>/manage-access', ManageAccessView.as_view(), name='manage-access'),
+    path('patient/<int:patient_id>/access-request/<int:request_id>/respond', RespondView.as_view(), name='respond'),
     path('', home, name='home page'),
 ]

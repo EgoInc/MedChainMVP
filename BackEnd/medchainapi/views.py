@@ -6,8 +6,9 @@ from django.http import HttpResponse
 
 from .serializers import PatientSerializer, AccessRequestSerializer, PatientSearchSerializer, \
     DoctorPatientListSerializer, AddPatientSerializer, AccessRequestsListSerializer, \
-    AuthorizedDoctorsListSerializer, DoctorSearchSerializer, ManageAccessSerializer
+    AuthorizedDoctorsListSerializer, RespondSerializer
 
+from .models import AccessRequest
 
 def home(request):
     return HttpResponse("""<h2>Welcome to the MedChainAPI homepage!</h2>
@@ -163,7 +164,7 @@ class AccessRequestsListView(APIView):
             }
         ]
         serializer = AccessRequestsListSerializer(response_data, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(response_data, status=status.HTTP_200_OK)
 
 
 class AuthorizedDoctorsListView(APIView):
@@ -193,53 +194,32 @@ class AuthorizedDoctorsListView(APIView):
 
 
         serializer = AuthorizedDoctorsListSerializer(response_data, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(response_data, status=status.HTTP_200_OK)
 
-class DoctorSearchView(APIView):
+
+
+class RespondView(APIView):
     @extend_schema(
-        summary="Поиск врачей",
-        description="Позволяет пациенту найти врачей по полному ФИО, дате рождения или специальности.",
-        request=DoctorSearchSerializer,
-        responses={status.HTTP_200_OK: DoctorSearchSerializer(many=True),
-                   status.HTTP_400_BAD_REQUEST: 'Неверные данные'},
+        summary="Запрос на подтверждение или отклонение доступа",
+        description="Позволяет пациенту подтвердить или отклонить запрос на доступ к его данным",
+        request=RespondSerializer,
+        responses={status.HTTP_200_OK: RespondSerializer},
     )
-    def get(self, request, patient_id):
-        # Заглушка данных TODO: сделать обращение к базе
-        response_data = [
-            {
-                "doctor_id": 1,
-                "name": "Петров Петр Петрович",
-                "date_of_birth": "2000-06-01T00:00:00+03:00",
-                "contract_address": "0x0000000000000000000000000000000000000000",
-                "specialization": "Лор"
-            },
-            {
-                "doctor_id": 101,
-                "name": "Петров Петр Петрович",
-                "date_of_birth": "2011-08-03T00:00:00+03:00",
-                "contract_address": "0x1100000000000000000000000000000000000011",
-                "specialization": "Узист"
-            }
-        ]
-        serializer = DoctorSearchSerializer(response_data, many=True)
-        # if serializer.is_valid():
-        #     return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+    def post(self, request, patient_id, request_id):
+        serializer = RespondSerializer(data={**request.data, 'patient_id': patient_id, 'request_id': request_id})
 
-
-class ManageAccessView(APIView):
-    @extend_schema(
-        summary="Управление доступом к данным пациента",
-        description="Позволяет пациенту выбрать врачей, которым дан доступ к его данным",
-        request=ManageAccessSerializer,
-        responses={status.HTTP_200_OK: ManageAccessSerializer,
-                   status.HTTP_400_BAD_REQUEST: 'Неверные данные',
-                   status.HTTP_401_UNAUTHORIZED: 'Нет доступа'},
-    )
-    def post(self, request, patient_id, doctor_id):
-        serializer = ManageAccessSerializer(data=request.data)
         if serializer.is_valid():
-            # TODO: прописать логику управления доступом
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            request_obj = AccessRequest.objects.get(id=request_id)
+
+            if serializer.validated_data['approve']:
+                # Логика подтверждения доступа
+                request_obj.status = 'approved'  # Например, меняем статус на 'approved'
+                request_obj.save()
+                return Response({"message": "Запрос подтвержден"}, status=status.HTTP_200_OK)
+            else:
+                # Логика отклонения доступа
+                request_obj.status = 'declined'  # Например, меняем статус на 'declined'
+                request_obj.save()
+                return Response({"message": "Запрос отклонен"}, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

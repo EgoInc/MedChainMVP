@@ -36,12 +36,17 @@ class Doctor(models.Model):
 class AccessRequest(models.Model):
     request_id = models.AutoField(primary_key=True)
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name="access_requests")
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="access_requests")
-    status = models.CharField(max_length=50)  # Статус запроса
+    patient_name = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="access_requests")
+    patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    status = models.CharField(max_length=20, choices=[
+        ('ожидание', 'ожидание'),
+        ('подтверждено', 'подтверждено'),
+        ('отклонено', 'отклонено')
+    ])
     request_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Запрос {self.request_id} {self.request_date} от {self.doctor.name} к {self.patient.name}, статус: {self.status}"
+        return f"Запрос {self.request_id} {self.request_date} от {self.doctor.name} к {self.patient_name}, статус: {self.status}"
 
 
 class ActionLog(models.Model):
