@@ -3,12 +3,12 @@ from django.db import models
 
 class Patient(models.Model):
     patient_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=255)
+    patient_name = models.CharField(max_length=255)
     date_of_birth = models.DateField()
     contract_address = models.CharField(max_length=42, unique=True)  # Адрес в блокчейне
 
     def __str__(self):
-        return f"Пациент {self.name} (ID: {self.patient_id}) родился {self.date_of_birth} с адресом: {self.contract_address}"
+        return f"Пациент {self.patient_name} (ID: {self.patient_id}) родился {self.date_of_birth} с адресом: {self.contract_address}"
 
 
 class MedicalOrganization(models.Model):
@@ -51,10 +51,10 @@ class AccessRequest(models.Model):
 
 class ActionLog(models.Model):
     log_id = models.AutoField(primary_key=True)
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="action_logs")
-    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name="action_logs")
+    patient_name = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="action_logs")
+    doctor_name = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name="action_logs")
     action_type = models.CharField(max_length=50)
     action_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Действие {self.action_type} (ID: {self.log_id}) врачом {self.doctor.name} для пациента {self.patient.name} от {self.action_date}"
+        return f"Действие {self.action_type} (ID: {self.log_id}) врачом {self.doctor_name} для пациента {self.patient_name} от {self.action_date}"
