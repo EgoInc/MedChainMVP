@@ -21,6 +21,7 @@ from rest_framework import permissions
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 
+
 schema_view = get_schema_view(
     openapi.Info(
         title="medchainapi",
@@ -32,6 +33,7 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
+    path('admin/add-patient', include('medchainapi.admin_urls')),
     path('admin/', admin.site.urls),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='docs'),
