@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  web:
+    build: .
+    container_name: medchain_web
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DEBUG=1
+      - DJANGO_SETTINGS_MODULE=medchain.settings
+      - DATABASE_URL=postgresql://user:password@db:5432/medchain_db
+
+  db:
+    image: postgres:15
+    container_name: medchain_db
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: medchain_db
+
+volumes:
+  pg_data:
