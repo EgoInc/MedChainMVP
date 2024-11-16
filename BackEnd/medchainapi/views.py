@@ -208,18 +208,7 @@ class RespondView(APIView):
     def post(self, request, patient_id, request_id):
         serializer = RespondSerializer(data={**request.data, 'patient_id': patient_id, 'request_id': request_id})
 
-        if serializer.is_valid():
-            request_obj = AccessRequest.objects.get(id=request_id)
-
-            if serializer.validated_data['approve']:
-                # Логика подтверждения доступа
-                request_obj.status = 'approved'  # Например, меняем статус на 'approved'
-                request_obj.save()
-                return Response({"message": "Запрос подтвержден"}, status=status.HTTP_200_OK)
-            else:
-                # Логика отклонения доступа
-                request_obj.status = 'declined'  # Например, меняем статус на 'declined'
-                request_obj.save()
-                return Response({"message": "Запрос отклонен"}, status=status.HTTP_200_OK)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        #TODO: обращение к бд
+        response_data={"message": "Запрос подтвержден"}
+        serializer=RespondSerializer(response_data)
+        return Response(response_data, status=status.HTTP_200_OK)
