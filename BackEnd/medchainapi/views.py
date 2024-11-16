@@ -1,14 +1,13 @@
+from django.http import HttpResponse
 from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.http import HttpResponse
 
 from .serializers import PatientSerializer, AccessRequestSerializer, PatientSearchSerializer, \
     DoctorPatientListSerializer, AddPatientSerializer, AccessRequestsListSerializer, \
     AuthorizedDoctorsListSerializer, RespondSerializer
 
-from .models import AccessRequest
 
 def home(request):
     return HttpResponse("""<h2>Welcome to the MedChainAPI homepage!</h2>
@@ -17,8 +16,7 @@ def home(request):
 <h5>.../api/docs/</h5>
 <h5>.../api/</h5>
 <h5>.../api/swagger/</h5> or try .../api/patient for more """
-    )
-
+                        )
 
 
 class PatientDataView(APIView):
@@ -192,13 +190,12 @@ class AuthorizedDoctorsListView(APIView):
             }
         ]
 
-
         serializer = AuthorizedDoctorsListSerializer(response_data, many=True)
         return Response(response_data, status=status.HTTP_200_OK)
 
 
-
 class RespondView(APIView):
+    # Я временно закомментил, чтобы заглушку добавить, так как не очень понял, что внутри происходит (Артем)
     @extend_schema(
         summary="Запрос на подтверждение или отклонение доступа",
         description="Позволяет пациенту подтвердить или отклонить запрос на доступ к его данным",
@@ -206,20 +203,26 @@ class RespondView(APIView):
         responses={status.HTTP_200_OK: RespondSerializer},
     )
     def post(self, request, patient_id, request_id):
-        serializer = RespondSerializer(data={**request.data, 'patient_id': patient_id, 'request_id': request_id})
+        # if serializer.is_valid():
+        #     request_obj = AccessRequest.objects.get(id=request_id)
+        #
+        #     if serializer.validated_data['approve']:
+        #         # Логика подтверждения доступа
+        #         request_obj.status = 'approved'  # Например, меняем статус на 'approved'
+        #         request_obj.save()
+        #         return Response({"message": "Запрос подтвержден"}, status=status.HTTP_200_OK)
+        #     else:
+        #         # Логика отклонения доступа
+        #         request_obj.status = 'declined'  # Например, меняем статус на 'declined'
+        #         request_obj.save()
+        #         return Response({"message": "Запрос отклонен"}, status=status.HTTP_200_OK)
 
-        if serializer.is_valid():
-            request_obj = AccessRequest.objects.get(id=request_id)
+        # serializer = RespondSerializer(data={**response_data, 'patient_id': patient_id, 'request_id': request_id})
+        # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-            if serializer.validated_data['approve']:
-                # Логика подтверждения доступа
-                request_obj.status = 'approved'  # Например, меняем статус на 'approved'
-                request_obj.save()
-                return Response({"message": "Запрос подтвержден"}, status=status.HTTP_200_OK)
-            else:
-                # Логика отклонения доступа
-                request_obj.status = 'declined'  # Например, меняем статус на 'declined'
-                request_obj.save()
-                return Response({"message": "Запрос отклонен"}, status=status.HTTP_200_OK)
+        response_data = {
+            "message": "Запрос подтвержден"
+        }
 
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serializer = RespondSerializer(response_data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
