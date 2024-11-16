@@ -39,12 +39,6 @@ media/
 # Исключить миграции (если вы не хотите их версионировать)
 */migrations/*
 
-# Исключить Docker-артефакты (если используете Docker)
-*.dockerignore
-.dockerignore
-Dockerfile
-docker-compose.override.yml
-
 # Исключить Node.js зависимости (если в проекте используется npm/yarn для фронтенда)
 node_modules/
 package-lock.json
