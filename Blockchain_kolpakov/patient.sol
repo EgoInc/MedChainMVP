@@ -15,6 +15,11 @@ contract Patient {
         require(patient_address == msg.sender, "Not patient");
         _;
     }
+    modifier isApprovedDoctor 
+    { 
+        require(isDoctorApprove[msg.sender] == true, "Not approved doctor");
+        _;
+    }
 
     string fio;
     string date_birth;
@@ -41,12 +46,18 @@ contract Patient {
     }
 
     //  функции для добавления новой записи в медицинскую историю пациента
-    function addMedicalRecord(uint _date, string memory _diagnose, string memory _complaint) public {
-        require(isDoctorApprove[msg.sender] == true, "Only authorized doctors allowed");
-
+    function addMedicalRecord(uint _date, string memory _diagnose, string memory _complaint) public isApprovedDoctor{
         medicalRecords[numberOfRecords] = MedicalRecord(_date, msg.sender, _diagnose, _complaint);
         numberOfRecords ++;
     }
+    // функции для получения списка записей в медицинской истории пациента
+    function getMedicalHistory() public view isApprovedDoctor returns(MedicalRecord[] memory) {
+        MedicalRecord[] memory values = new MedicalRecord[](numberOfRecords);
+        for (uint256 i = 0; i < numberOfRecords; i++) {
+            values[i] = medicalRecords[i];
+        }
+        return values;
+    } 
 
     // Сколько записей в БЧ?
     function getNumberOfRecords() public view returns(uint) {
