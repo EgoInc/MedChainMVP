@@ -64,7 +64,7 @@ contract Patient {
         return numberOfRecords;
     }
     // Получить мед.запись по id
-    function getRecordById(uint _id) public view returns(MedicalRecord memory) {
+    function getRecordById(uint _id) public view isApprovedDoctor returns(MedicalRecord memory)  {
         return medicalRecords[_id];
     }
 
