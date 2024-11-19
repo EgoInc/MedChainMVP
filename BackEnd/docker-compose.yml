@@ -4,7 +4,7 @@ services:
   web:
     build: .
     container_name: medchain_web
-    command: python manage.py migrate && python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
     ports:
@@ -14,7 +14,10 @@ services:
     environment:
       - DEBUG=1
       - DJANGO_SETTINGS_MODULE=medchain.settings
-      - DATABASE_URL=postgresql://user:password@db:5432/medchain_db
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=medchain_db
+      - POSTGRES_HOST=db
 
   db:
     image: postgres:15

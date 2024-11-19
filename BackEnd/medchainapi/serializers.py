@@ -6,7 +6,7 @@ from .models import Patient, AccessRequest, Doctor
 class PatientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Patient
-        fields = ['patient_id', 'name', 'date_of_birth', 'contract_address']
+        fields = ['patient_id', 'patient_name', 'date_of_birth', 'contract_address']
 
 
 class AccessRequestSerializer(serializers.ModelSerializer):
@@ -18,7 +18,7 @@ class AccessRequestSerializer(serializers.ModelSerializer):
 class PatientSearchSerializer(serializers.ModelSerializer):
     class Meta:
         model = Patient
-        fields = ['patient_id', 'name', 'date_of_birth', 'contract_address']
+        fields = ['patient_id', 'patient_name', 'date_of_birth', 'contract_address']
 
 
 class DoctorPatientListSerializer(serializers.ModelSerializer):
@@ -27,13 +27,13 @@ class DoctorPatientListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Patient
-        fields = ['patient_id', 'name', 'date_of_birth', 'contract_address', 'access_granted_date']
+        fields = ['patient_id', 'patient_name', 'date_of_birth', 'contract_address', 'access_granted_date']
 
 
 class AddPatientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Patient
-        fields = ['patient_id', 'name', 'date_of_birth', 'contract_address']
+        fields = ['patient_id', 'patient_name', 'date_of_birth', 'contract_address']
 
 
 class AccessRequestsListSerializer(serializers.ModelSerializer):
