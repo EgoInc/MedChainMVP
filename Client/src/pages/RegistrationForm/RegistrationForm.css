@@ -1,0 +1,160 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto Condensed", serif;
+  font-weight: 400;
+}
+
+.singup {
+  height: 83vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.singup-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  background: #adc4f7;
+  top: 204px;
+  left: 136px;
+  gap: 0px;
+  border-radius: 30px;
+  opacity: 0px;
+  width: 989px;
+  height: 530px;
+}
+
+.signup-content_form {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+}
+
+.singup-content-text {
+  display: flex;
+  align-self: self-start;
+  width: 100%;
+  max-width: 1200px;
+  font-size: 32px;
+}
+.singup-content-text {
+  color: #141414;
+  margin-bottom: 20px;
+}
+
+.singup-content-flex {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.singup-content-left,
+.singup-content-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  row-gap: 20px;
+}
+
+.singup-content-left input,
+.singup-content-right input {
+  width: 85%;
+  height: 50px;
+  gap: 0px;
+  border-radius: 20px;
+  border: 1px solid #959595;
+  opacity: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  transition: 0.3s;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid #959595;
+  border-radius: 20px;
+}
+
+.singup-content-right input {
+  align-self: self-end;
+}
+
+.singup-content-left input:hover,
+.singup-content-right input:hover {
+  box-shadow: 0px 0px 25px 0px rgba(255, 255, 255, 0.5);
+}
+.singup-content-left input:focus,
+.singup-content-right input:focus {
+  box-shadow: 0px 0px 45px 0px rgba(255, 255, 255, 0.5);
+}
+
+.checkbox-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.checkbox-container-left {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+}
+.checkbox-container-left input {
+  width: 20px;
+  height: 20px;
+  top: 764px;
+  left: 757px;
+  gap: 0px;
+  border-radius: 5px 0px 0px 0px;
+  opacity: 0px;
+}
+.checkbox-container-right {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+.checkbox-container-right button {
+  width: 150px;
+  height: 56px;
+  top: 744px;
+  left: 1009px;
+  gap: 0px;
+  border-radius: 30px;
+  border: 1px solid #909090;
+  opacity: 0px;
+  font-size: 20px;
+  box-shadow: 0px 0px 25px 0px rgba(255, 255, 255, 0.5);
+  transition: 0.3s;
+}
+.registration-button {
+  width: 130px;
+}
+.checkbox-container-right button:hover {
+  background-color: rgba(255, 255, 255, 0.645);
+  animation: breathing 2s infinite ease-in-out;
+}
+
+@keyframes breathing {
+  0% {
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.5); /* Исходное состояние (малая тень) */
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.7); /* Когда тень максимально большая */
+  }
+  100% {
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.5); /* Возвращение к исходному состоянию */
+  }
+}
+.checkbox-container-left label {
+  margin-right: 10px;
+  font-size: 22px;
+}
