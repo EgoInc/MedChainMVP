@@ -1,0 +1,64 @@
+.medical-record {
+  width: 90%;
+  margin: 5% 0 0 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  .add-note-button {
+    display: flex;
+    align-items: center;
+
+    padding: 35px 45px;
+    gap: 0px;
+    border-radius: 40px;
+    border: 0;
+    opacity: 0px;
+    background-color: #adc4f7;
+
+    font-family: Rubik;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 23.7px;
+  }
+
+  .add-note-button:active {
+    transform: scale(0.95);
+  }
+  .add-note-button:hover {
+    cursor: pointer;
+  }
+
+  .medical-record-menu {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+  }
+
+  .notes-list {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+
+  .logo {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+
+  h2 {
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 56.88px;
+    text-align: left;
+    margin-bottom: 30px;
+  }
+
+  .icon svg {
+    width: 90px;
+    height: 90px;
+  }
+}

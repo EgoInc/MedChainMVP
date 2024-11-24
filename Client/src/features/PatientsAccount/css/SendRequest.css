@@ -1,0 +1,125 @@
+.send-request {
+  position: relative;
+  width: 36%;
+  min-height: 100px;
+  gap: 0px;
+  border-radius: 20px;
+  opacity: 0px;
+  background-color: #bcd9ff;
+  text-align: left;
+  padding: 40px 0 40px 35px;
+
+  .toggle-button {
+    background: 0;
+    border: 0;
+
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+  }
+  .toggle-button.expanded {
+    transform: rotate(180deg);
+  }
+
+  p {
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 35.55px;
+    margin-bottom: 20px;
+  }
+
+  .request-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    form {
+      width: 100%;
+    }
+
+    button {
+      margin-top: 40px;
+      height: 40px;
+      width: 130px;
+      border-radius: 30px;
+      opacity: 0px;
+      background-color: white;
+      box-shadow: 0px 0px 25px 0px #ffffffcc;
+      border: 1px #909090;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 21.33px;
+      cursor: pointer;
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+  }
+
+  .send-request-labels {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21.33px;
+    width: 100%;
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    input[type="checkbox"] {
+      appearance: none; /* Убираем стандартный стиль */
+      -webkit-appearance: none; /* Для Safari */
+      -moz-appearance: none; /* Для Firefox */
+      background-color: white;
+      border: 1px solid white;
+      border-radius: 5px;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      outline: none;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    input[type="checkbox"]:checked {
+      background-color: #c1c1c1;
+      border-color: #c1c1c1;
+    }
+
+    input[type="checkbox"]:checked::after {
+      content: "✔";
+      color: white;
+      font-size: 14px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+.send-request.expanded {
+  max-height: 300px;
+}
+.send-request.submitted {
+  margin: 0;
+  background-color: #c2f3bf;
+  padding: 30px 0 170px 25px;
+  max-height: 300px;
+  font-family: Rubik;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 35.55px;
+}

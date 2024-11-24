@@ -1,0 +1,64 @@
+.medical-record-filter {
+  max-width: 500px;
+  border-radius: 20px;
+  border: 0;
+  background-color: #bcd9ff;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  max-height: 101px;
+  padding: 15px;
+  row-gap: 10px;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 28.44px;
+  text-align: left;
+  color: #353535;
+  column-gap: 20px;
+}
+
+.medical-record-filter label {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 28.44px;
+  color: #353535;
+  text-align: left;
+}
+
+.medical-record-filter input[type="checkbox"] {
+  appearance: none; /* Убираем стандартный стиль */
+  -webkit-appearance: none; /* Для Safari */
+  -moz-appearance: none; /* Для Firefox */
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  outline: none;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.medical-record-filter input[type="checkbox"]:checked {
+  background-color: #c1c1c1;
+  border-color: #c1c1c1;
+}
+
+.medical-record-filter input[type="checkbox"]:checked::after {
+  content: "✔";
+  color: white;
+  font-size: 14px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

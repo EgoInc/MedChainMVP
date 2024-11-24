@@ -1,0 +1,25 @@
+.search-your-patients {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 30px;
+  text-align: left;
+  width: 90%;
+  margin-left: 15%;
+
+  h2 {
+    font-family: Rubik;
+    width: 100%;
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 56.88px;
+  }
+
+  .logo {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+  }
+}

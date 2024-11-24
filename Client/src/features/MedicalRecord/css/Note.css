@@ -1,0 +1,90 @@
+.note {
+  width: 90%;
+  margin: 0;
+  background-color: #bcd9ff;
+  max-height: 150px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  justify-content: flex-start;
+  position: relative;
+  /* padding: 35px 25px; */
+
+  .note-box {
+    padding: 35px 35px;
+    width: 95%;
+  }
+
+  .note-not-expanded {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 20px;
+  }
+
+  .note-header {
+    margin: 0;
+    display: flex;
+    gap: 20px;
+  }
+
+  h4 {
+    font-family: Rubik;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 37.92px;
+    text-align: left;
+    margin: 5px 0;
+  }
+
+  h5 {
+    margin: 0;
+    font-family: Rubik;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 33.18px;
+    color: #656565;
+  }
+
+  .doctor-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .text {
+    margin-top: 20px;
+    width: 85%;
+    border-radius: 20px;
+    padding: 15px;
+    padding-bottom: 120px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: white;
+  }
+
+  .expand-button {
+    background: 0;
+    border: 0;
+    position: absolute;
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    bottom: 15px;
+    right: 35px;
+  }
+  .expand-button.expanded {
+    transform: rotate(180deg);
+    bottom: 25px;
+  }
+}
+
+.note.expanded {
+  min-height: 320px;
+}

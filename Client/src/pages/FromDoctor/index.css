@@ -1,0 +1,29 @@
+@font-face {
+  font-family: Rubik;
+  src: url("../../shared/FromDoctor/fonts/Rubik/Rubik.ttf");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Rubik;
+}
+
+.from-doctor {
+  width: 80%;
+  margin: 5% 0 0 15%;
+  text-align: left;
+
+  .main-part {
+    display: flex;
+    justify-content: flex-start;
+    gap: 50px;
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+  }
+}

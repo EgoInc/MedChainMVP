@@ -1,0 +1,38 @@
+.patient-card {
+  background-color: #bcd9ff;
+  width: 45%;
+  padding: 25px;
+  padding-bottom: 160px;
+  padding-top: 0;
+  margin-right: 20px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  transition: max-height 0.3s ease-in-out;
+  max-height: 341px;
+
+  h4 {
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 47.4px;
+    margin: 15px 0 10px 0;
+    padding-top: 10px;
+  }
+
+  p {
+    margin: 0 0 -10px 0;
+    padding: 0;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 33.18px;
+    color: #3b3b3b;
+  }
+}
+.patient-card-info {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
