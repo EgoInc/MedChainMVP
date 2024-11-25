@@ -23,7 +23,6 @@ const App = () => {
         onButtonClick={togleForm}
       />
       <div className="bottom">
-        <Routes></Routes>
         {hasError && <Error />}
         {isLogin ? (
           <LoginForm
