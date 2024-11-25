@@ -70,6 +70,7 @@ const RegistrationForm = ({ onButtonClick, onSuccess }) => {
                 onChange={handleChange}
                 placeholder="ФИО"
                 required
+                className="input_text"
               />
 
               <input
@@ -80,6 +81,7 @@ const RegistrationForm = ({ onButtonClick, onSuccess }) => {
                 onChange={handleChange}
                 placeholder="Дата рождения"
                 required
+                className="input_text"
               />
 
               <input
@@ -91,6 +93,7 @@ const RegistrationForm = ({ onButtonClick, onSuccess }) => {
                 placeholder="Серия и номер паспорта"
                 maxLength="11"
                 required
+                className="input_text"
               />
 
               <input
@@ -101,6 +104,7 @@ const RegistrationForm = ({ onButtonClick, onSuccess }) => {
                 onChange={handleChange}
                 placeholder="Номер СНИЛС"
                 required
+                className="input_text"
               />
 
               <input
@@ -124,6 +128,7 @@ const RegistrationForm = ({ onButtonClick, onSuccess }) => {
                 onChange={handleChange}
                 placeholder="Введите номер телефона"
                 required
+                className="input_text"
               />
 
               <input
@@ -144,6 +149,7 @@ const RegistrationForm = ({ onButtonClick, onSuccess }) => {
                 onChange={handleChange}
                 placeholder="Введите Вашу поликлинику"
                 required
+                className="input_text"
               />
 
               <input
@@ -154,6 +160,7 @@ const RegistrationForm = ({ onButtonClick, onSuccess }) => {
                 onChange={handleChange}
                 placeholder="Введите пароль"
                 required
+                className="input_text"
               />
 
               <input
@@ -164,6 +171,7 @@ const RegistrationForm = ({ onButtonClick, onSuccess }) => {
                 onChange={handleChange}
                 placeholder="Повторите пароль"
                 required
+                className="input_text"
               />
             </div>
           </div>
