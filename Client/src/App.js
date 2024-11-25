@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import ExamplePage from "./pages/ExamplePage";
 import HomePage from "./pages/HomePage";
-
+import LoginReg from "./pages/LoginRegistration/App";
 import FromDoctor from "./pages/FromDoctor";
 import FromDoctorRequests from "./pages/FromDoctorRequests";
 import SearchYourPatients from "./pages/SearchYourPatients";
@@ -13,8 +13,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/example" element={<ExamplePage />} />
+        <Route path="/" element={<LoginReg />} />
         <Route path="/doctor/:doctorId" element={<FromDoctor />} />
         <Route
           path="/doctor/:doctorId/requests"
