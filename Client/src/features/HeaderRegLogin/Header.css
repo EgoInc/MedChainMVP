@@ -9,9 +9,15 @@ body {
   padding: 0;
 }
 .image {
+  margin-top: 20px;
   position: absolute;
   top: 0px;
   right: 0px;
+}
+
+.image img {
+  width: 70px;
+  height: 70px;
 }
 .header {
   margin-top: 20px;

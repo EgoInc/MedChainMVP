@@ -1,4 +1,4 @@
-import Logo from "../../shared/Logo.png";
+import Logo from "../../shared/Logo.svg";
 import "./Header.css";
 
 const Header = ({
