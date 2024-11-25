@@ -101,6 +101,8 @@
 }
 
 .discribing {
+  padding-top: 10px;
+  padding-bottom: 10px;
   border: 10px solid red;
   height: 130px;
 }
