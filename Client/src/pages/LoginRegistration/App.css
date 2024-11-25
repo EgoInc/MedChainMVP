@@ -4,6 +4,12 @@ input {
 textarea {
   box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.25);
 }
+.App {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+}
 .bottom {
   width: 989px;
   display: flex;
