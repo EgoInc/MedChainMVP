@@ -1,4 +1,4 @@
-import Logo from "../../shared/Logo.png";
+import Logo from "../../shared/Logo.svg";
 import "./Header.css";
 
 const Header = ({
@@ -10,23 +10,25 @@ const Header = ({
 }) => {
   return (
     <header className="header">
-      <div className="image">
-        <img src={Logo} alt="" />
-      </div>
-      <div className="header-text">
-        <h1>{title}</h1>
-      </div>
+      <div className="header-box">
+        <div className="image">
+          <img src={Logo} alt="" />
+        </div>
+        <div className="header-text">
+          <h1>{title}</h1>
+        </div>
 
-      <div className="header-login">
-        <p>{nearButtonText}</p>
+        <div className="header-login">
+          <p>{nearButtonText}</p>
 
-        <button
-          type="submit"
-          className={`header-login_button ${buttonClass}`}
-          onClick={onButtonClick}
-        >
-          {buttonText}
-        </button>
+          <button
+            type="submit"
+            className={`header-login_button ${buttonClass}`}
+            onClick={onButtonClick}
+          >
+            {buttonText}
+          </button>
+        </div>
       </div>
     </header>
   );

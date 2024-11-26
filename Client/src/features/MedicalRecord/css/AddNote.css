@@ -1,5 +1,5 @@
 .add-note {
-  width: 90%;
+  width: 100%;
   border-radius: 20px;
   opacity: 0px;
   background-color: #bcd9ff;
@@ -7,12 +7,13 @@
   .select-and-submit {
     display: flex;
     justify-content: space-between;
-    width: 95%;
+    width: 90%;
   }
 
   .add-note-box {
-    padding: 15px;
+    padding: 25px 40px;
     display: flex;
+    justify-content: center;
     width: 100%;
   }
 
@@ -91,6 +92,8 @@
     resize: none;
     padding-bottom: 70px;
     width: 90%;
+    outline: 0;
+    box-shadow: none;
   }
   textarea:focus {
     outline: none;

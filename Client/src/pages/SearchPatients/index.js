@@ -1,10 +1,16 @@
 import React, { useState } from "react";
+import NavPanel from "../../features/NavPanel/NavPanel";
 import Logo from "../../shared/FromDoctor/images/Logo.png";
 import SearchMenu from "../../features/SearchYourPatients/components/SearchMenu";
 import PatientList from "../../features/SearchYourPatients/components/PatientList";
 import "./index.css";
 
 function SearchPatients() {
+  const routes = {
+    person: "/doctor/:doctorId",
+    search: "/doctor/:doctorId/search/:doctorId/patients",
+    logout: "/",
+  };
   const mockPatients = [
     {
       id: 1,
@@ -58,6 +64,7 @@ function SearchPatients() {
 
   return (
     <div className="search-patients">
+      <NavPanel routes={routes} />
       <img src={Logo} alt="Logo" className="logo" />
       <h2>Список пациентов</h2>
       <SearchMenu onSearch={handleSearch} />

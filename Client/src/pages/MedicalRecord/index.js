@@ -5,8 +5,14 @@ import MedicalRecordFilter from "../../features/MedicalRecord/components/Medical
 import AddNote from "../../features/MedicalRecord/components/AddNote";
 import Note from "../../features/MedicalRecord/components/Note";
 import { ReactComponent as PatientAvatar } from "../../shared/Avatar.svg";
+import NavPanel from "../../features/NavPanel/NavPanel";
 
 function MedicalRecord() {
+  const routes = {
+    person: "/doctor/:doctorId",
+    search: "/doctor/:doctorId/search/patients",
+    logout: "/",
+  };
   const mockBackendNotes = [
     {
       id: 1,
@@ -63,6 +69,7 @@ function MedicalRecord() {
 
   return (
     <div className="medical-record">
+      <NavPanel routes={routes} />
       <img src={Logo} alt="Logo" className="logo" />
       <h2>Медицинская карта</h2>
       <div className="medical-record-menu">

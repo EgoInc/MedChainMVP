@@ -2,7 +2,7 @@
 
 body {
   margin: 0;
-  font-family: "Rubik", serif;
+  font-family: "Rubik", "Roboto Condensed", serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

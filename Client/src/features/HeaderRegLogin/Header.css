@@ -1,24 +1,28 @@
-body {
+.header {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 }
-* {
-  margin: 0;
-  padding: 0;
-}
-.image {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-}
-.header {
+
+.header-box {
   margin-top: 20px;
   width: 989px;
   height: 70px;
   display: flex;
   justify-content: space-between;
+
+  .image {
+    margin-top: 20px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+  }
+
+  .image img {
+    width: 160px;
+    height: 160px;
+  }
 }
 .header-text {
   padding-top: 4px;

@@ -5,10 +5,17 @@ import Avatar from "../../features/FromDoctor/components/Avatar";
 import Logo from "../../shared/FromDoctor/images/Logo.png";
 import Request from "../../features/FromDoctor/components/Request";
 import Patients from "../../features/FromDoctor/components/Patients";
+import NavPanel from "../../features/NavPanel/NavPanel";
 
 function FromDoctor() {
+  const routes = {
+    person: "/doctor/:doctorId",
+    search: "/doctor/:doctorId/search/patients",
+    logout: "/",
+  };
   return (
     <div className="from-doctor">
+      <NavPanel routes={routes} />
       <div className="main-part">
         <DoctorCard
           lastName="Иванов"
@@ -19,7 +26,7 @@ function FromDoctor() {
           phoneNumber="+71234567890"
           email="ivanovi@mail.ru "
         />
-        <Avatar />
+        <Avatar className="avatar" />
         <img src={Logo} alt="Logo" className="logo" />
         <Request />
         <Patients />

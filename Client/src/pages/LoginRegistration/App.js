@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; 
-import Header from "../../features/HeaderRegLogin/Header.js"; 
-import RegistrationForm from "../RegistrationForm/RegistrationForm.js"; 
-import LoginForm from "../LoginForm/LoginForm.js"; 
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Header from "../../features/HeaderRegLogin/Header.js";
+import RegistrationForm from "../RegistrationForm/RegistrationForm.js";
+import LoginForm from "../LoginForm/LoginForm.js";
 import { useState } from "react";
 import Error from "../Error/Error.js";
 const App = () => {
@@ -14,7 +14,7 @@ const App = () => {
     setHasError(false);
   };
   return (
-    <div className="App">
+    <div className="login-registration">
       <Header
         title={isLogin ? "Вход в аккаунт" : "Регистрация"}
         nearButtonText={isLogin ? "Нет аккаунта?" : "Уже есть аккаунт?"}
@@ -22,7 +22,7 @@ const App = () => {
         buttonClass={isLogin ? "registration-button" : "login-button"}
         onButtonClick={togleForm}
       />
-      <div className="bottom">
+      <div className="login-registration-bottom">
         {hasError && <Error />}
         {isLogin ? (
           <LoginForm

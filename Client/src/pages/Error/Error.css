@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Roboto Condensed", serif;
   font-weight: 400;
 }
 
@@ -101,6 +100,8 @@
 }
 
 .discribing {
+  padding-top: 10px;
+  padding-bottom: 10px;
   border: 10px solid red;
   height: 130px;
 }
