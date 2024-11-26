@@ -6,8 +6,12 @@ import { useNavigate } from "react-router-dom";
 
 const Patient = ({ lastName, name, secondName, dateOfBitth }) => {
   const navigate = useNavigate();
+  const pathToPatientCard = "/doctor/:doctorId/patient/:patientId";
   return (
-    <div className="search-your-patient">
+    <div
+      className="search-your-patient"
+      onClick={() => navigate("/doctor/:doctorId/patient/:patientId")}
+    >
       <PatientAvatar />
       <div className="patient-info">
         <h3>

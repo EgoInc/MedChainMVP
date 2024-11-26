@@ -63,3 +63,6 @@
 .doctor-card.expanded {
   max-height: 480px;
 }
+.doctor-card:hover {
+  cursor: pointer;
+}

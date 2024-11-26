@@ -17,7 +17,10 @@ const Note = ({
     setTextOpen(!isTextOpen);
   };
   return (
-    <div className={`note ${isTextOpen ? "expanded" : ""}`}>
+    <div
+      className={`note ${isTextOpen ? "expanded" : ""}`}
+      onClick={toggleTextOpen}
+    >
       <div className="note-box">
         <div className="note-not-expanded">
           <div className="note-header">

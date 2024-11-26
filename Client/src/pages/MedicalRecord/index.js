@@ -11,7 +11,9 @@ function MedicalRecord() {
     {
       id: 1,
       avatar: <PatientAvatar />,
-      doctorName: "Иванов Иван Иванович",
+      doctorLastName: "Иванов",
+      doctorName: "Иван",
+      doctorSecondName: "Иванович",
       location: "Городская поликлиника №2",
       type: "Анализы",
       text: "Результаты анализа крови.",
@@ -19,7 +21,9 @@ function MedicalRecord() {
     {
       id: 2,
       avatar: <PatientAvatar />,
-      doctorName: "Петров Петр Петрович",
+      doctorLastName: "Петров",
+      doctorName: "Петр",
+      doctorSecondName: "Петрович",
       location: "Городская больница №2",
       type: "Диагноз",
       text: "Диагноз: ОРВИ.",
@@ -85,7 +89,9 @@ function MedicalRecord() {
           <Note
             key={note.id}
             avatar={note.avatar}
+            doctorLastName={note.doctorLastName}
             doctorName={note.doctorName}
+            doctorSecondName={note.doctorSecondName}
             location={note.location}
             type={note.type}
             text={note.text}

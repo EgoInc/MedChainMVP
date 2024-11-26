@@ -113,6 +113,7 @@
 .send-request.expanded {
   max-height: 300px;
 }
+
 .send-request.submitted {
   margin: 0;
   background-color: #c2f3bf;
@@ -122,4 +123,7 @@
   font-size: 30px;
   font-weight: 400;
   line-height: 35.55px;
+}
+.send-request:hover {
+  cursor: pointer;
 }

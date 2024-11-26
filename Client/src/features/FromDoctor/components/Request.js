@@ -5,12 +5,13 @@ import { useNavigate } from "react-router-dom";
 
 const Request = () => {
   let [unreadNumber, setUnreadNumber] = useState(10);
+  const pathToRequests = "/doctor/:doctorId/requests";
   const navigate = useNavigate();
   return (
-    <div className="request">
+    <div className="request" onClick={() => navigate(pathToRequests)}>
       <p>Отправленные заявки</p>
       {unreadNumber ? <p className="show">{`+${unreadNumber}`}</p> : <p></p>}
-      <button onClick={() => navigate("/doctor/:doctorId/requests")}>
+      <button onClick={() => navigate(pathToRequests)}>
         <Toggle />
       </button>
     </div>
