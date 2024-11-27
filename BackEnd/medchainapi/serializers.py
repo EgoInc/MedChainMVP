@@ -43,11 +43,16 @@ class AccessRequestsListSerializer(serializers.ModelSerializer):
 
 
 class AuthorizedDoctorsListSerializer(serializers.ModelSerializer):
-    # TODO: Сделать работающее получение access_date
+    # access_date получает первое значение из связанных access_requests
     access_date = serializers.DateTimeField(source='access_requests.first.request_date', read_only=True)
+
+    # Получаем имя организации через ForeignKey
+    organization_name = serializers.CharField(source='organization.organization_name', read_only=True)
+    organization_id = serializers.IntegerField(source='organization.id', read_only=True)
+
     class Meta:
         model = Doctor
-        fields = ['doctor_id', 'doctor_name', "organization_id", 'organization_name', 'access_date']
+        fields = ['doctor_id', 'doctor_name', 'organization_id', 'organization_name', 'specialization', 'access_date']
 
 
 class RespondSerializer(serializers.Serializer):
