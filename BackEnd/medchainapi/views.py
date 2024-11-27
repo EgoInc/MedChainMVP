@@ -62,8 +62,15 @@ class AccessRequestView(APIView):
         doctor_id = request.data.get('doctor_id')
         patient_id = request.data.get('patient_id')
 
-        doctor = Doctor.objects.get(doctor_id=doctor_id)
-        patient = Patient.objects.get(patient_id=patient_id)
+        try:
+            doctor = Doctor.objects.get(doctor_id=doctor_id)
+            patient = Patient.objects.get(patient_id=patient_id)
+        except Patient.DoesNotExist:
+            # Если пациента нет, возвращаем ошибку 404
+            return Response({"detail": "Patient not found"}, status=status.HTTP_404_NOT_FOUND)
+        except Doctor.DoesNotExist:
+            # Если доктора нет, возвращаем ошибку 404
+            return Response({"detail": "Doctor not found"}, status=status.HTTP_404_NOT_FOUND)
 
         # Проверяем, есть ли уже активный запрос от этого врача
         existing_request = AccessRequest.objects.filter(
@@ -71,7 +78,7 @@ class AccessRequestView(APIView):
         ).first()
 
         if existing_request:
-            return Response({"detail": "Запрос уже существует"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"detail": "Request already exists"}, status=status.HTTP_400_BAD_REQUEST)
 
         # Создаем новый запрос
         access_request = AccessRequest.objects.create(
