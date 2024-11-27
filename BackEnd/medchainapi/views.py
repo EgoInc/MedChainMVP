@@ -11,16 +11,19 @@ from .serializers import PatientSerializer, AccessRequestSerializer, PatientSear
 
 
 def home(request):
+    host = request.get_host()  # Получаем текущий хост
     return HttpResponse(
-        """
+        f"""
         <h2>Welcome to the MedChainAPI homepage!</h2>
         <h3>This is an API for managing patients' data :)</h3>
-        <h3>feel free to navigate:</h3>   
-        <h3>.../admin/</h3>
-        <h3>.../api/schema/</h3> 
-        <h3>.../api/docs/</h3>
-        <h3>.../api/</h3>
-        <h3>.../api/swagger/</h3> or try .../api/patient for more.
+        <h3>Feel free to navigate:</h3>
+        <ul>
+            <li><a href="http://{host}/api/swagger/">Swagger</a></li>
+            <li><a href="http://{host}/admin/">Admin Panel</a></li>
+            <li><a href="http://{host}/api/docs/">API Docs</a></li>
+            <li><a href="http://{host}/api/schema/">Schema (download)</a></li>
+            <li><a href="http://{host}/api/">API Root (this page)</a></li>
+        </ul>
         """
     )
 
