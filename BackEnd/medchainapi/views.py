@@ -1,13 +1,10 @@
 from django.http import HttpResponse
-from drf_spectacular.utils import extend_schema
+from drf_spectacular.utils import extend_schema, OpenApiExample, OpenApiParameter, OpenApiResponse
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import Patient, AccessRequest, Doctor
-from .serializers import PatientSerializer, AccessRequestSerializer, PatientSearchSerializer, \
-    DoctorPatientListSerializer, AddPatientSerializer, AccessRequestsListSerializer, \
-    AuthorizedDoctorsListSerializer, RespondSerializer
+from .serializers import *
 
 
 def home(request):
@@ -54,8 +51,49 @@ class AccessRequestView(APIView):
     @extend_schema(
         summary="Запрос на доступ к данным пациента",
         description="Позволяет врачу отправить запрос на доступ к данным пациента.",
-        request=AccessRequestSerializer,
-        responses={status.HTTP_201_CREATED: AccessRequestSerializer},
+        parameters=[
+            OpenApiParameter(
+                name="doctor_id",
+                type=int,
+                location=OpenApiParameter.PATH,
+                description="Уникальный идентификатор врача.",
+                required=True,
+            ),
+        ],
+        request={
+            "application/json": {
+                "type": "object",
+                "properties": {
+                    "doctor_id": {"type": "integer", "description": "Уникальный идентификатор врача."},
+                    "patient_id": {"type": "integer", "description": "Уникальный идентификатор пациента."},
+                },
+                "required": ["doctor_id", "patient_id"],
+            },
+        },
+        responses={
+            status.HTTP_201_CREATED: OpenApiResponse(
+                response=AccessRequestSerializer,
+                description="Запрос успешно создан.",
+            ),
+            status.HTTP_400_BAD_REQUEST: OpenApiResponse(
+                description="Запрос уже существует.",
+                response={
+                    "type": "object",
+                    "properties": {
+                        "detail": {"type": "string", "example": "Request already exists"},
+                    },
+                },
+            ),
+            status.HTTP_404_NOT_FOUND: OpenApiResponse(
+                description="Доктор или пациент не найден.",
+                response={
+                    "type": "object",
+                    "properties": {
+                        "detail": {"type": "string", "example": "Patient not found"},
+                    },
+                },
+            ),
+        },
     )
     def post(self, request, doctor_id):
         # Получаем данные врача и пациента из запроса
@@ -95,41 +133,45 @@ class AccessRequestView(APIView):
 
 
 class PatientSearchView(APIView):
+
     @extend_schema(
         summary="Поиск пациентов",
-        description="Позволяет врачу найти пациентов по имени, дате рождения или полному ФИО.",
-        request=PatientSearchSerializer,
-        responses={status.HTTP_200_OK: PatientSearchSerializer(many=True)},
+        description="Позволяет врачу найти пациентов по имени, фамилии и/или дате рождения.",
+        request=PatientSearchSerializer,  # Указываем структуру тела запроса
+        responses={status.HTTP_200_OK: PatientSerializer(many=True)},
+        examples=[
+            OpenApiExample(
+                "Пример запроса",
+                description="Пример тела запроса для поиска пациентов.",
+                value={
+                    "name": "Ned",
+                    "date_of_birth": "1980-01-01",
+                },
+            ),
+        ],
     )
-    def get(self, request, doctor_id):
-        # Заглушка данных TODO: сделать обращение к базе
-        # response_data = [
-        #     {
-        #         "patient_id": 1,
-        #         "name": "Иванов Иван Иванович",
-        #         "date_of_birth": "2000-06-01T00:00:00+03:00",
-        #         "contract_address": "0x0000000000000000000000000000000000000000"
-        #     },
-        #     {
-        #         "patient_id": 101,
-        #         "name": "Иванов Иван Алексеевич",
-        #         "date_of_birth": "2011-08-03T00:00:00+03:00",
-        #         "contract_address": "0x1100000000000000000000000000000000000011"
-        #     }
-        # ]
-        # serializer = PatientSearchSerializer(response_data, many=True)
-        # return Response(serializer.data, status=status.HTTP_200_OK)
+    def post(self, request, doctor_id):
+        serializer = PatientFilterSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        # Фильтрация пациентов по имени и дате рождения
+        name = serializer.validated_data.get('name', '')
+        date_of_birth = serializer.validated_data.get('date_of_birth', None)
+
         queryset = Patient.objects.all()
-        if username is not None:
-            queryset = queryset.filter(purchaser__username=username)
 
-        user = self.request.user
-        response_data = Patient.objects.filter(id=doctor_id)
+        if name:
+            queryset = queryset.filter(patient_name__icontains=name)
 
-        # Сериализация данных
-        serializer = PatientSearchSerializer(response_data, many=True)
+        # Применяем фильтр по дате рождения, если она указана
+        if date_of_birth:
+            queryset = queryset.filter(date_of_birth=date_of_birth)
+
+        if not queryset:
+            return Response({"detail": "По данным запроса пациентов не найдено."}, status=status.HTTP_404_NOT_FOUND)
+
+        # Пример возврата результатов
+        serializer = PatientSearchSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 

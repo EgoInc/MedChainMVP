@@ -40,11 +40,13 @@ INSTALLED_APPS = [
     'drf_spectacular',
     'rest_framework',
     'drf_yasg',
+    'django_filters',
 
     'medchainapi'
 ]
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    # 'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
 
 SPECTACULAR_SETTINGS = {

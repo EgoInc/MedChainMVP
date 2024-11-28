@@ -9,6 +9,18 @@ class PatientSerializer(serializers.ModelSerializer):
         fields = ['patient_id', 'patient_name', 'date_of_birth', 'contract_address']
 
 
+class PatientFilterSerializer(serializers.Serializer):
+    name = serializers.CharField(required=False, allow_blank=True)
+    date_of_birth = serializers.DateField(required=False, allow_null=True)
+
+    @staticmethod
+    def validate_doctor_id(value):
+        # Проверяем, существует ли указанный доктор
+        if not Doctor.objects.filter(id=value).exists():
+            raise serializers.ValidationError("Указанный доктор не найден.")
+        return value
+
+
 class AccessRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = AccessRequest
