@@ -36,8 +36,6 @@ class Doctor(models.Model):
 class AccessRequest(models.Model):
     request_id = models.AutoField(primary_key=True)
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name="access_requests")
-    # patient_name = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="access_requests")
-    # patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     status = models.CharField(max_length=20, choices=[
         ('ожидание', 'ожидание'),
