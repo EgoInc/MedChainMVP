@@ -7,12 +7,12 @@ contract Patient {
         fio = _fio; 
         date_birth = _date_birth;
         city = _city;
-        patient_address = msg.sender;
+        admin_address = msg.sender;
     } 
 
-    modifier isPatient 
+    modifier isAdmin 
     { 
-        require(patient_address == msg.sender, "Not patient");
+        require(admin_address == msg.sender, "Not admin");
         _;
     }
     modifier isApprovedDoctor 
@@ -24,7 +24,7 @@ contract Patient {
     string fio;
     string date_birth;
     string city;
-    address patient_address;
+    address admin_address;
 
     struct MedicalRecord {
         uint date;
@@ -38,10 +38,10 @@ contract Patient {
     uint numberOfRecords = 0;
 
     // функции для управления списком авторизованных врачей
-    function addDoctor(address _doctorAddress) public isPatient {
+    function addDoctor(address _doctorAddress) public isAdmin {
         isDoctorApprove[_doctorAddress] = true;
     }
-    function removeDoctor(address _doctorAddress) public isPatient {
+    function removeDoctor(address _doctorAddress) public isAdmin {
         isDoctorApprove[_doctorAddress] = false;
     }
 
@@ -70,6 +70,6 @@ contract Patient {
 
     // функция получения информации о пациенте (ФИО, дата рождения).
     function getPatientData() public view returns(string memory, string memory, address) {
-        return (fio, date_birth, patient_address);
+        return (fio, date_birth, admin_address);
     }
 }
