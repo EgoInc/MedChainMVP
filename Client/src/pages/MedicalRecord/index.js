@@ -5,13 +5,21 @@ import MedicalRecordFilter from "../../features/MedicalRecord/components/Medical
 import AddNote from "../../features/MedicalRecord/components/AddNote";
 import Note from "../../features/MedicalRecord/components/Note";
 import { ReactComponent as PatientAvatar } from "../../shared/Avatar.svg";
+import NavPanel from "../../features/NavPanel/NavPanel";
 
 function MedicalRecord() {
+  const routes = {
+    person: "/doctor/:doctorId",
+    search: "/doctor/:doctorId/search/patients",
+    logout: "/",
+  };
   const mockBackendNotes = [
     {
       id: 1,
       avatar: <PatientAvatar />,
-      doctorName: "Иванов Иван Иванович",
+      doctorLastName: "Иванов",
+      doctorName: "Иван",
+      doctorSecondName: "Иванович",
       location: "Городская поликлиника №2",
       type: "Анализы",
       text: "Результаты анализа крови.",
@@ -19,7 +27,9 @@ function MedicalRecord() {
     {
       id: 2,
       avatar: <PatientAvatar />,
-      doctorName: "Петров Петр Петрович",
+      doctorLastName: "Петров",
+      doctorName: "Петр",
+      doctorSecondName: "Петрович",
       location: "Городская больница №2",
       type: "Диагноз",
       text: "Диагноз: ОРВИ.",
@@ -59,6 +69,7 @@ function MedicalRecord() {
 
   return (
     <div className="medical-record">
+      <NavPanel routes={routes} />
       <img src={Logo} alt="Logo" className="logo" />
       <h2>Медицинская карта</h2>
       <div className="medical-record-menu">
@@ -85,7 +96,9 @@ function MedicalRecord() {
           <Note
             key={note.id}
             avatar={note.avatar}
+            doctorLastName={note.doctorLastName}
             doctorName={note.doctorName}
+            doctorSecondName={note.doctorSecondName}
             location={note.location}
             type={note.type}
             text={note.text}

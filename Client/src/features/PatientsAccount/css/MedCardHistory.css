@@ -30,3 +30,7 @@
 .med-card-history.disable {
   background-color: #c1c1c1;
 }
+
+.med-card-history.enable:hover {
+  cursor: pointer;
+}

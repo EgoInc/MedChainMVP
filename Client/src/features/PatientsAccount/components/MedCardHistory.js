@@ -5,13 +5,18 @@ import { useNavigate } from "react-router-dom";
 
 const MedCardHistory = ({ isRequestSent }) => {
   const navigate = useNavigate();
+  const pathToMedicalRecord =
+    "/doctor/:doctorId/patient/:patientId/medicalRecord";
   const openMedicalHistory = () => {
-    navigate("/doctor/:doctorId/patient/:patientId/medicalRecord");
+    navigate(pathToMedicalRecord);
   };
   const getClassStatus = isRequestSent ? "enable" : "disable";
 
   return (
-    <div className={`med-card-history ${getClassStatus}`}>
+    <div
+      className={`med-card-history ${getClassStatus}`}
+      onClick={openMedicalHistory}
+    >
       <p>История мед. карты</p>
       {isRequestSent && (
         <button onClick={openMedicalHistory}>

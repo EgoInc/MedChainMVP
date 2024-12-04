@@ -1,17 +1,13 @@
 import React, { useState } from "react";
 import "../css/AddNote.css";
 import { ReactComponent as DoctorAvatar } from "../../../shared/Avatar.svg";
+import DoctorCard from "../../FromDoctor/components/DoctorCard";
 const AddNote = ({ onAddNote, closeForm }) => {
   const [type, setType] = useState("");
   const [text, setText] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (!type || !text) {
-      alert("Пожалуйста, заполните все поля!");
-      return;
-    }
 
     const newNote = {
       id: Date.now(),
@@ -84,9 +80,16 @@ const AddNote = ({ onAddNote, closeForm }) => {
             <button
               type="submit"
               className="save-button"
-              //   disabled={!type || !text}
+              disabled={!type || !text}
             >
               Добавить запись
+            </button>
+            <button
+              className="cancel-button"
+              type="button"
+              onClick={() => closeForm()}
+            >
+              Отмена
             </button>
           </div>
 

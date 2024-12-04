@@ -37,3 +37,10 @@
     font-size: 25px;
   }
 }
+
+.request:hover {
+  cursor: pointer;
+}
+button:hover {
+  cursor: pointer;
+}

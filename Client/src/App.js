@@ -12,6 +12,7 @@ import FromPatient from "./pages/FromPatient";
 import FromPatientRequests from "./pages/FromPatientRequests";
 import DoctorsAccount from "./pages/DoctorsAccount";
 import SearchYourDoctors from "./pages/SearchYourDoctors";
+import SearchPatients from "./pages/SearchPatients";
 
 function App() {
   return (
@@ -24,8 +25,12 @@ function App() {
           element={<FromDoctorRequests />}
         />
         <Route
-          path="/doctor/:doctorId/searchYourPatients"
+          path="/doctor/:doctorId/search/:doctorId/patients"
           element={<SearchYourPatients />}
+        />
+        <Route
+          path="/doctor/:doctorId/search/patients"
+          element={<SearchPatients />}
         />
         <Route
           path="/doctor/:doctorId/patient/:patientId"

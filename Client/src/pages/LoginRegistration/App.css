@@ -1,13 +1,14 @@
 textarea {
   box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.25);
 }
-.App {
+.login-registration {
   width: 100%;
   display: flex;
   flex-direction: column;
   height: 50%;
+  align-items: center;
 }
-.bottom {
+.login-registration-bottom {
   width: 989px;
   display: flex;
   justify-content: space-between;

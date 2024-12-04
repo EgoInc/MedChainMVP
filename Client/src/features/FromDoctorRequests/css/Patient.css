@@ -3,13 +3,13 @@
   display: flex;
   justify-content: flex-start;
   gap: 20px;
-  height: 150px;
+  height: 130px;
   align-items: center;
   text-align: left;
   padding: 20px;
   position: relative;
   border-color: black;
-  width: 90%;
+  width: 100%;
 
   .toggle-button {
     position: absolute;
@@ -27,7 +27,6 @@
 
   .patient-info {
     width: 80%;
-    margin-bottom: 25px;
   }
 
   h3 {
@@ -44,6 +43,10 @@
     top: 25px;
     right: 30px;
   }
+}
+
+.patient:hover {
+  cursor: pointer;
 }
 
 .patient.waiting {

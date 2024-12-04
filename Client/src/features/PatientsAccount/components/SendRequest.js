@@ -3,15 +3,27 @@ import Toggle from "../../FromDoctor/components/Toggle";
 import "../css/SendRequest.css";
 
 const SendRequest = ({ onSubmit }) => {
+  const [checkboxes, setCheckboxes] = useState({
+    accessRequest: false,
+    studyHistory: false,
+    editHistory: false,
+  });
+
+  const handleCheckboxChange = (e) => {
+    const { id, checked } = e.target;
+    setCheckboxes((prevState) => ({
+      ...prevState,
+      [id]: checked,
+    }));
+  };
+
+  const isAnyChecked = Object.values(checkboxes).some((checked) => checked);
+
   const [isExpanded, setIsExpanded] = useState(false);
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
   const [requestData, setRequestData] = useState("");
-
-  const handleInputChange = (e) => {
-    setRequestData(e.target.value);
-  };
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -25,18 +37,23 @@ const SendRequest = ({ onSubmit }) => {
     return <p className="send-request submitted">Заявка отправлена</p>;
   }
   return (
-    <div className={`send-request ${isExpanded ? "expanded" : ""}`}>
+    <div
+      className={`send-request ${isExpanded ? "expanded" : ""}`}
+      onClick={toggleExpand}
+    >
       <p>Отправить заявку</p>
       {isExpanded && (
-        <div className="request-menu">
+        // предотвращаем кликабельность внутри формы
+        <div className="request-menu" onClick={(e) => e.stopPropagation()}>
           <form onSubmit={handleSubmit}>
             <div className="send-request-labels">
               <label>
                 <input
                   type="checkbox"
                   value={requestData}
-                  onChange={handleInputChange}
-                  id="access-request"
+                  onChange={handleCheckboxChange}
+                  id="accessRequest"
+                  checked={checkboxes.accessRequest}
                 />
                 Запрос доступа
               </label>
@@ -44,8 +61,9 @@ const SendRequest = ({ onSubmit }) => {
                 <input
                   type="checkbox"
                   value={requestData}
-                  onChange={handleInputChange}
-                  id="study-history"
+                  onChange={handleCheckboxChange}
+                  id="studyHistory"
+                  checked={checkboxes.studyHistory}
                 />
                 Изучение мед карты
               </label>
@@ -53,13 +71,18 @@ const SendRequest = ({ onSubmit }) => {
                 <input
                   type="checkbox"
                   value={requestData}
-                  onChange={handleInputChange}
-                  id="edit-history"
+                  onChange={handleCheckboxChange}
+                  id="editHistory"
+                  checked={checkboxes.editHistory}
                 />
                 Изменение мед карты
               </label>
             </div>
-            <button type="submit" className="submit-button">
+            <button
+              type="submit"
+              className="submit-button"
+              disabled={!isAnyChecked}
+            >
               Отправить
             </button>
           </form>

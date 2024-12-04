@@ -20,7 +20,7 @@
 }
 
 .menu {
-  width: 80%;
+  width: 85%;
   display: flex;
   justify-content: space-between;
   gap: 15px;
@@ -35,7 +35,8 @@
   justify-content: space-between;
   padding: 10px;
   min-width: 80%;
-  height: 118px;
+  height: 100px;
+  padding: 20px 30px 10px 30px;
 
   input {
     height: 45%;
@@ -51,5 +52,10 @@
     margin-bottom: 10px;
     font-family: Rubik;
     padding: 10px;
+  }
+
+  input:focus {
+    outline: none;
+    border: none;
   }
 }

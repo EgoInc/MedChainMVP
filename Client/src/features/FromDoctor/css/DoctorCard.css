@@ -1,8 +1,8 @@
 .doctor-card {
   background-color: #bcd9ff;
   width: 50%;
-  padding: 25px;
-  padding-bottom: 100px;
+  padding: 35px;
+  padding-bottom: 80px;
   border-radius: 30px;
   display: flex;
   flex-direction: column;
@@ -62,4 +62,7 @@
 }
 .doctor-card.expanded {
   max-height: 480px;
+}
+.doctor-card:hover {
+  cursor: pointer;
 }

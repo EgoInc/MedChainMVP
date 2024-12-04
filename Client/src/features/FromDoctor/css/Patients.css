@@ -25,3 +25,7 @@
     line-height: 35.55px;
   }
 }
+
+.patients:hover {
+  cursor: pointer;
+}

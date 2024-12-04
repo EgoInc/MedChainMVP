@@ -1,8 +1,8 @@
 .navPanel {
-  position: absolute;
+  position: fixed; /* остается на фиксированном месте даже во время скроллинга*/
   top: 0px;
   left: 0px;
-  height: 100vh;
+  height: 100%; /* так она тоже на всю высоту экрана даже при скроллинге*/
   width: 8vw;
   background: #adc4f7;
   border-radius: 0px 40px 40px 0px;

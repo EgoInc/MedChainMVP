@@ -14,7 +14,7 @@ const App = () => {
     setHasError(false);
   };
   return (
-    <div className="App">
+    <div className="login-registration">
       <Header
         title={isLogin ? "Вход в аккаунт" : "Регистрация"}
         nearButtonText={isLogin ? "Нет аккаунта?" : "Уже есть аккаунт?"}
@@ -22,7 +22,7 @@ const App = () => {
         buttonClass={isLogin ? "registration-button" : "login-button"}
         onButtonClick={togleForm}
       />
-      <div className="bottom">
+      <div className="login-registration-bottom">
         {hasError && <Error />}
         {isLogin ? (
           <LoginForm

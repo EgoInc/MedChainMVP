@@ -16,7 +16,10 @@ const DoctorCard = ({
     setIsExpanded(!isExpanded);
   };
   return (
-    <div className={`doctor-card ${isExpanded ? "expanded" : ""}`}>
+    <div
+      className={`doctor-card ${isExpanded ? "expanded" : ""}`}
+      onClick={toggleExpand}
+    >
       <div className="text-container">
         <h4>
           {lastName} {name} {secondName}

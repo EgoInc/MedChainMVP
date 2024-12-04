@@ -5,8 +5,14 @@ import Logo from "../../shared/FromDoctor/images/Logo.png";
 import PatientCard from "../../features/PatientsAccount/components/PatientCard";
 import MedCardHistory from "../../features/PatientsAccount/components/MedCardHistory";
 import SendRequest from "../../features/PatientsAccount/components/SendRequest";
+import NavPanel from "../../features/NavPanel/NavPanel";
 
 function PatientsAccount() {
+  const routes = {
+    person: "/doctor/:doctorId",
+    search: "/doctor/:doctorId/search/patients",
+    logout: "/",
+  };
   const [isRequestSent, setIsRequestSent] = useState(false);
 
   const handleRequestSubmit = () => {
@@ -14,6 +20,7 @@ function PatientsAccount() {
   };
   return (
     <div className="patients-account">
+      <NavPanel routes={routes} />
       <img src={Logo} alt="Logo" className="logo" />
 
       <PatientCard

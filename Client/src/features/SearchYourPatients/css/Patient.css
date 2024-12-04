@@ -3,13 +3,13 @@
   display: flex;
   justify-content: flex-start;
   gap: 20px;
-  max-height: 150px;
+  max-height: 100px;
   align-items: center;
   text-align: left;
   padding: 30px 20px;
   position: relative;
   background-color: #bcd9ff;
-  width: 40%;
+  min-width: 45%;
 
   button {
     background: 0;
@@ -33,6 +33,9 @@
   .patient-info {
     width: 80%;
     margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   h3 {
@@ -42,4 +45,8 @@
     color: #2f2f2f;
     margin-bottom: 10px;
   }
+}
+
+.search-your-patient:hover {
+  cursor: pointer;
 }
