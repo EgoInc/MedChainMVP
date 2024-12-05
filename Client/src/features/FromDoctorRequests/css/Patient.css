@@ -45,7 +45,7 @@
   }
 }
 
-.patient.approved:hover {
+.patient:hover {
   cursor: pointer;
 }
 

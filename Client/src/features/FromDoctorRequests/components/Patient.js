@@ -26,12 +26,7 @@ const Patient = ({ name, date_of_birth, status }) => {
   return (
     <div
       className={getClassStatus(status)}
-      // переход только если заявка одорена
-      onClick={() => {
-        if (getClassStatus(status) === "patient approved") {
-          navigate(pathToPatientCard);
-        }
-      }}
+      onClick={() => navigate(pathToPatientCard)}
     >
       <PatientAvatar />
       <div className="patient-info">
