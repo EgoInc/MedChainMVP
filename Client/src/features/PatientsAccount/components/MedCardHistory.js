@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import Toggle from "../../FromDoctor/components/Toggle";
 import "../css/MedCardHistory.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const MedCardHistory = ({ isRequestSent }) => {
+  const { doctorId } = useParams();
+  const { patientId } = useParams();
   const navigate = useNavigate();
-  const pathToMedicalRecord =
-    "/doctor/:doctorId/patient/:patientId/medicalRecord";
+  const pathToMedicalRecord = `/doctor/${doctorId}/patient/${patientId}/medical-record`;
   const openMedicalHistory = () => {
     navigate(pathToMedicalRecord);
   };

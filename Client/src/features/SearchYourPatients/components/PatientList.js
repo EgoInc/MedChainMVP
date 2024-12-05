@@ -12,11 +12,9 @@ const PatientList = ({ patients, searchFilter }) => {
     <div className="patient-list">
       {filteredPatients.map((patient) => (
         <Patient
-          key={patient.id}
-          lastName={patient.lastName}
+          patient_id={patient.patient_id}
           name={patient.name}
-          secondName={patient.secondName}
-          dateOfBitth={patient.dateOfBirth}
+          date_of_birth={patient.date_of_birth}
         />
       ))}
     </div>

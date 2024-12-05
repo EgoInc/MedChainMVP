@@ -21,19 +21,16 @@ function App() {
           element={<FromDoctorRequests />}
         />
         <Route
-          path="/doctor/:doctorId/search/:doctorId/patients"
+          path="/doctor/:doctorId/my-patients"
           element={<SearchYourPatients />}
         />
+        <Route path="/doctor/:doctorId/patients" element={<SearchPatients />} />
         <Route
-          path="/doctor/:doctorId/search/patients"
-          element={<SearchPatients />}
-        />
-        <Route
-          path="/doctor/:doctorId/patient/:patientId"
+          path="/doctor/:doctorId/patient/:patientId/"
           element={<PatientsAccount />}
         />
         <Route
-          path="/doctor/:doctorId/patient/:patientId/medicalRecord"
+          path="/doctor/:doctorId/patient/:patientId/medical-record"
           element={<MedicalRecord />}
         />
       </Routes>

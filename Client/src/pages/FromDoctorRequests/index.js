@@ -3,11 +3,13 @@ import FilterableParentMenu from "../../features/FromDoctorRequests/components/F
 import "./index.css";
 import Logo from "../../shared/FromDoctor/images/Logo.png";
 import NavPanel from "../../features/NavPanel/NavPanel";
+import { useParams } from "react-router-dom";
 
 function FromDoctorRequests() {
+  const { doctorId } = useParams();
   const routes = {
-    person: "/doctor/:doctorId",
-    search: "/doctor/:doctorId/search/patients",
+    person: `/doctor/${doctorId}`,
+    search: `/doctor/${doctorId}/patients`,
     logout: "/",
   };
 

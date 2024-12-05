@@ -2,7 +2,7 @@ import PatientAvatar from "./PatientAvatar";
 import Toggle from "../../FromDoctor/components/Toggle";
 import "../css/Patient.css";
 
-const Patient = ({ lastName, name, secondName, dateOfBitth, status }) => {
+const Patient = ({ name, date_of_birth, status }) => {
   const getClassStatus = (status) => {
     switch (status) {
       case "ожидание":
@@ -21,10 +21,8 @@ const Patient = ({ lastName, name, secondName, dateOfBitth, status }) => {
     <div className={getClassStatus(status)}>
       <PatientAvatar />
       <div className="patient-info">
-        <h3>
-          {lastName} {name} {secondName}
-        </h3>
-        <p>{dateOfBitth}</p>
+        <h3>{name}</h3>
+        <p>{date_of_birth}</p>
       </div>
       <p className="status">{status}</p>
       <button className="toggle-button">

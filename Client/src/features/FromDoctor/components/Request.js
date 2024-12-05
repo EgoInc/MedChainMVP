@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "../css/Request.css";
 import Toggle from "./Toggle";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Request = () => {
+  const { doctorId } = useParams();
   let [unreadNumber, setUnreadNumber] = useState(10);
-  const pathToRequests = "/doctor/:doctorId/requests";
+  const pathToRequests = `/doctor/${doctorId}/requests`;
   const navigate = useNavigate();
   return (
     <div className="request" onClick={() => navigate(pathToRequests)}>

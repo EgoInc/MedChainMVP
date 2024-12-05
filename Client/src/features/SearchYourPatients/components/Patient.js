@@ -2,24 +2,25 @@ import React from "react";
 import Toggle from "../../FromDoctor/components/Toggle";
 import PatientAvatar from "../../FromDoctorRequests/components/PatientAvatar";
 import "../css/Patient.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import formatDate from "../../../shared/FormatDate";
 
-const Patient = ({ lastName, name, secondName, dateOfBitth }) => {
+const Patient = ({ name, date_of_birth, patient_id }) => {
+  const { doctorId } = useParams();
   const navigate = useNavigate();
-  const pathToPatientCard = "/doctor/:doctorId/patient/:patientId";
+  const pathToPatientCard = `/doctor/${doctorId}/patient/${patient_id}/`;
+
   return (
     <div
       className="search-your-patient"
-      onClick={() => navigate("/doctor/:doctorId/patient/:patientId")}
+      onClick={() => navigate(pathToPatientCard)}
     >
       <PatientAvatar />
       <div className="patient-info">
-        <h3>
-          {lastName} {name} {secondName}
-        </h3>
-        <p>{dateOfBitth}</p>
+        <h3>{name}</h3>
+        <p>{formatDate(date_of_birth)}</p>
       </div>
-      <button onClick={() => navigate("/doctor/:doctorId/patient/:patientId")}>
+      <button onClick={() => navigate(pathToPatientCard)}>
         <Toggle />
       </button>
     </div>

@@ -6,11 +6,13 @@ import AddNote from "../../features/MedicalRecord/components/AddNote";
 import Note from "../../features/MedicalRecord/components/Note";
 import { ReactComponent as PatientAvatar } from "../../shared/Avatar.svg";
 import NavPanel from "../../features/NavPanel/NavPanel";
+import { useParams } from "react-router-dom";
 
 function MedicalRecord() {
+  const { doctorId } = useParams();
   const routes = {
-    person: "/doctor/:doctorId",
-    search: "/doctor/:doctorId/search/patients",
+    person: `/doctor/${doctorId}`,
+    search: `/doctor/${doctorId}/patients`,
     logout: "/",
   };
   const mockBackendNotes = [

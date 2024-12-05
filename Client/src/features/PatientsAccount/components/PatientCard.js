@@ -2,15 +2,13 @@ import React, { useState } from "react";
 import Toggle from "../../FromDoctor/components/Toggle";
 import "../css/PatientCard.css";
 
-const PatientCard = ({ lastName, name, secondName, id, dateOfBirth }) => {
+const PatientCard = ({ name, patient_id, date_of_birth }) => {
   return (
     <div className="patient-card">
       <div className="patient-card-info">
-        <h4>
-          {lastName} {name} {secondName}
-        </h4>
-        <p>id: {id}</p>
-        <p>Дата рождения: {dateOfBirth}</p>
+        <h4>{name}</h4>
+        <p>id: {patient_id}</p>
+        <p>Дата рождения: {date_of_birth}</p>
       </div>
     </div>
   );
