@@ -1,8 +1,10 @@
 import PatientAvatar from "./PatientAvatar";
 import Toggle from "../../FromDoctor/components/Toggle";
 import "../css/Patient.css";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Patient = ({ name, date_of_birth, status }) => {
+  const { doctorId } = useParams();
   const getClassStatus = (status) => {
     switch (status) {
       case "ожидание":
@@ -17,15 +19,30 @@ const Patient = ({ name, date_of_birth, status }) => {
     }
   };
 
+  const navigate = useNavigate();
+  const patientId = 101; // пока ведет на одного и того же пациента, но как обновится список данных в заявке на бэке, исправлю
+  const pathToPatientCard = `/doctor/${doctorId}/patient/${patientId}/`;
+
   return (
-    <div className={getClassStatus(status)}>
+    <div
+      className={getClassStatus(status)}
+      // переход только если заявка одорена
+      onClick={() => {
+        if (getClassStatus(status) === "patient approved") {
+          navigate(pathToPatientCard);
+        }
+      }}
+    >
       <PatientAvatar />
       <div className="patient-info">
         <h3>{name}</h3>
         <p>{date_of_birth}</p>
       </div>
       <p className="status">{status}</p>
-      <button className="toggle-button">
+      <button
+        className="toggle-button"
+        onClick={() => navigate(pathToPatientCard)}
+      >
         <Toggle />
       </button>
     </div>
