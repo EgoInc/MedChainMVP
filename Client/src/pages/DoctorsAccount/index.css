@@ -1,0 +1,20 @@
+.doctors-account {
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+    width: 90%;
+    margin: 5% 0 0 10%;
+    gap: 40px;
+  
+    .logo {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+    }
+    .avatar {
+      width: 40%;
+    }
+  }

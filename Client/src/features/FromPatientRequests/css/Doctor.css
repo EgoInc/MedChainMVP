@@ -1,0 +1,46 @@
+.doctor {
+    border-radius: 30px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    height: 150px;
+    align-items: center;
+    text-align: left;
+    padding: 20px;
+    position: relative;
+    border-color: black;
+    width: 90%;
+  
+    .doctor-info {
+      width: 80%;
+      margin-bottom: 25px;
+    }
+
+    p {
+        color: #656565;
+        font-size: 28px;
+        font-weight: 400;
+        line-height: 33.18px;
+        margin-top: 0;
+      }
+  
+    h3 {
+      font-size: 32px;
+      line-height: 37.92px;
+      font-weight: 400;
+      color: #2f2f2f;
+      margin-bottom: 10px;
+    }
+  
+  }
+
+  .buttons .confirm-button {
+    background-color: #c2f3bf;
+    color: white;
+  }
+  
+  .buttons .reject-button {
+    background-color: #f0c8c8;
+    color: white;
+  }
+  

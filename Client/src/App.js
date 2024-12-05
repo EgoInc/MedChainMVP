@@ -8,6 +8,10 @@ import FromDoctorRequests from "./pages/FromDoctorRequests";
 import SearchYourPatients from "./pages/SearchYourPatients";
 import PatientsAccount from "./pages/PatientsAccount";
 import MedicalRecord from "./pages/MedicalRecord";
+import FromPatient from "./pages/FromPatient";
+import FromPatientRequests from "./pages/FromPatientRequests";
+import DoctorsAccount from "./pages/DoctorsAccount";
+import SearchYourDoctors from "./pages/SearchYourDoctors";
 import SearchPatients from "./pages/SearchPatients";
 
 function App() {
@@ -31,6 +35,23 @@ function App() {
         />
         <Route
           path="/doctor/:doctorId/patient/:patientId/medical-record"
+          element={<MedicalRecord />}
+        />
+        <Route path="/patient/:patientId/" element={<FromPatient />}/>
+        <Route 
+          path="/patient/:patientId/requests"
+          element={<FromPatientRequests />}
+        />
+        <Route 
+          path="/patient/:patientId/searchYourDoctors"
+          element={<SearchYourDoctors />}
+        />
+        <Route 
+          path="/patient/:patientId/doctor/:doctorId"
+          element={<DoctorsAccount />}
+        />
+        <Route 
+          path="/patient/:patientId/medicalRecord"
           element={<MedicalRecord />}
         />
       </Routes>

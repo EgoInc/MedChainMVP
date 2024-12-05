@@ -1,0 +1,41 @@
+.requests {
+    background-color: #bcd9ff;
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    padding: 25px;
+    padding-bottom: 250px;
+    border-radius: 30px;
+    color: #141414;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 35.55px;
+    position: relative;
+  
+    button {
+      background: 0;
+      border: 0;
+      position: absolute;
+      right: 25px;
+      bottom: 25px;
+  
+      transform: rotate(-90deg);
+    }
+
+    .show {
+      background-color: #f0c8c8;
+      color: #141414;
+      border-radius: 100%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 10px;
+      right: 25px;
+      position: absolute;
+      font-size: 25px;
+    }
+
+
+  }
