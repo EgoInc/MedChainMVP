@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0 
 pragma solidity >=0.8.2 <0.9.0; 
 
-import { Patient } from './patient.sol';
+import { Patient } from './Patient.sol';
 
 contract Admin {
     address admin_address;
