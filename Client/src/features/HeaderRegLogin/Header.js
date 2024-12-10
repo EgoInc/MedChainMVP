@@ -9,28 +9,30 @@ const Header = ({
   onButtonClick,
 }) => {
   return (
-    <header className="header">
-      <div className="image">
-        <img src={Logo} alt="" />
-      </div>
-      <div className="header-text">
-        <h1>{title}</h1>
-      </div>
-
-      <div className="header-login">
-        <div className="header-login-text">
-          <p>{nearButtonText}</p>
+    <div className="header-body">
+      <header className="header">
+        <div className="image">
+          <img src={Logo} alt="" />
+        </div>
+        <div className="header-text">
+          <h1>{title}</h1>
         </div>
 
-        <button
-          type="submit"
-          className={`header-login_button ${buttonClass}`}
-          onClick={onButtonClick}
-        >
-          {buttonText}
-        </button>
-      </div>
-    </header>
+        <div className="header-login">
+          <div className="header-login-text">
+            <p>{nearButtonText}</p>
+          </div>
+
+          <button
+            type="submit"
+            className={`header-login_button ${buttonClass}`}
+            onClick={onButtonClick}
+          >
+            {buttonText}
+          </button>
+        </div>
+      </header>
+    </div>
   );
 };
 
