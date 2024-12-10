@@ -6,6 +6,7 @@ import { formatInsuranceNumber } from "../../features/RegistrationForm/formatIns
 import { formatPhone } from "../../features/RegistrationFormAndLoginForm/formatPhone";
 import { validate } from "../../features/RegistrationForm/validation";
 const RegistrationForm = ({ onButtonClick, onSuccess }) => {
+  const [inputs, setInputs] = useState(false);
   const [formData, setFormData] = useState({
     fio: "",
     dob: "",
@@ -59,9 +60,13 @@ const RegistrationForm = ({ onButtonClick, onSuccess }) => {
       <div className="singup-content">
         <form onSubmit={handleSubmit} className="signup-content_form">
           <h2 className="singup-content-text">Данные для регистрации</h2>
-          <div className="singup-content-flex">
+          <div className="singup-content-flex ">
             {/* Левая часть формы */}
-            <div className="singup-content-left">
+            <div
+              className={`singup-content-left ${
+                inputs && "singup-content-left-mobile-notactive"
+              }`}
+            >
               <input
                 type="text"
                 id="fio"
@@ -119,7 +124,12 @@ const RegistrationForm = ({ onButtonClick, onSuccess }) => {
             </div>
 
             {/* Правая */}
-            <div className="singup-content-right">
+
+            <div
+              className={`singup-content-right ${
+                inputs && "singup-content-right-mobile-active"
+              }`}
+            >
               <input
                 type="tel"
                 id="phone"
@@ -179,24 +189,41 @@ const RegistrationForm = ({ onButtonClick, onSuccess }) => {
           {/* Чекбокс и кнопка */}
           <div className="checkbox-container">
             {/*Левая часть нижней части */}
-            <div className="checkbox-container-left">
-              <label htmlFor="accept">
-                Соглашаюсь на обработку персональных данных
-              </label>
-              <input
-                type="checkbox"
-                id="accept"
-                name="accept"
-                checked={formData.accept}
-                onChange={handleChange}
-                required
-              />
-            </div>
+            {inputs && (
+              <div className="checkbox-container-left">
+                <label htmlFor="accept">
+                  Соглашаюсь на обработку персональных данных
+                </label>
+                <input
+                  type="checkbox"
+                  id="accept"
+                  name="accept"
+                  checked={formData.accept}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            )}
+
             {/*Правая часть нижней части */}
-            <div className="checkbox-container-right">
-              <button type="submit" onClick={onButtonClick}>
-                Отправить
-              </button>
+            <div className="checkbox-container-right ">
+              {inputs ? (
+                <button
+                  type="submit"
+                  onClick={onButtonClick}
+                  className="old-button"
+                >
+                  Отправить
+                </button>
+              ) : (
+                <button
+                  onClick={() => setInputs(true)}
+                  className={`${!inputs && "new-button"}`}
+                  X
+                >
+                  Далее &gt;
+                </button>
+              )}
             </div>
           </div>
         </form>

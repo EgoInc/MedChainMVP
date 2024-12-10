@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: "Roboto Condensed", serif;
   font-weight: 400;
 }
 
@@ -123,5 +124,11 @@
   }
   100% {
     box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+  }
+}
+@media (max-width: 600px) {
+  .error-content {
+    margin-top: -390px;
+    width: 90%;
   }
 }

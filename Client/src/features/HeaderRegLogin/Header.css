@@ -1,28 +1,24 @@
-.header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+* {
+  margin: 0;
+  padding: 0;
+}
+.image {
+  margin-top: 20px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
 }
 
-.header-box {
+.image img {
+  width: 70px;
+  height: 70px;
+}
+.header {
   margin-top: 20px;
   width: 989px;
   height: 70px;
   display: flex;
   justify-content: space-between;
-
-  .image {
-    margin-top: 20px;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-  }
-
-  .image img {
-    width: 160px;
-    height: 160px;
-  }
 }
 .header-text {
   padding-top: 4px;
@@ -31,8 +27,6 @@
 .header-login {
   width: 320px;
   height: 70px;
-  top: 51px;
-  left: 868.97px;
   gap: 0px;
   border-radius: 50px;
   opacity: 0px;
@@ -44,10 +38,7 @@
 }
 .header-login_button {
   margin-left: 20px;
-  width: 85px;
   height: 40px;
-  top: 76px;
-  left: 1105px;
   gap: 0px;
   border-radius: 30px;
   border: 1px solid #909090;
@@ -57,7 +48,51 @@
   font-size: 18px;
   transition: 0.3s;
 }
+.registration-button {
+  width: 120px;
+}
+.login-button {
+  width: 85px;
+}
 .header-login_button:hover {
   animation: breathing 2s infinite ease-in-out;
   background-color: rgba(255, 255, 255, 0.645);
+}
+
+@media (max-width: 600px) {
+  .header-login-text {
+    font-size: 20px;
+    width: 50%;
+    text-align: left;
+  }
+  .image {
+    width: 70px;
+    height: 70px;
+    right: 5%;
+  }
+  .header {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 90%;
+    height: 140px;
+  }
+  .header-login {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 5%;
+  }
+  .header-login_button {
+    width: 30%;
+    height: 80%;
+    border: 1px 0px 0px 0px;
+    opacity: 0px;
+  }
+  .header-text {
+    text-align: left;
+    font-size: 24px;
+  }
 }

@@ -10,25 +10,25 @@ const Header = ({
 }) => {
   return (
     <header className="header">
-      <div className="header-box">
-        <div className="image">
-          <img src={Logo} alt="" />
-        </div>
-        <div className="header-text">
-          <h1>{title}</h1>
-        </div>
+      <div className="image">
+        <img src={Logo} alt="" />
+      </div>
+      <div className="header-text">
+        <h1>{title}</h1>
+      </div>
 
-        <div className="header-login">
+      <div className="header-login">
+        <div className="header-login-text">
           <p>{nearButtonText}</p>
-
-          <button
-            type="submit"
-            className={`header-login_button ${buttonClass}`}
-            onClick={onButtonClick}
-          >
-            {buttonText}
-          </button>
         </div>
+
+        <button
+          type="submit"
+          className={`header-login_button ${buttonClass}`}
+          onClick={onButtonClick}
+        >
+          {buttonText}
+        </button>
       </div>
     </header>
   );
