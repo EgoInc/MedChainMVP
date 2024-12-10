@@ -3,6 +3,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from ..models import Patient
 from ..serializers import PatientSearchSerializer, PatientFilterSerializer
 
 
@@ -11,51 +12,23 @@ class PatientSearchView(APIView):
         summary="Поиск пациентов",
         description="Позволяет врачу найти пациентов по имени, фамилии и/или дате рождения.",
         request=PatientSearchSerializer,  # Указываем структуру тела запроса
-        examples=[
-            OpenApiExample(
-                "Пример успешного ответа",
-                description="Пример ответа с подтверждёнными пациентами.",
-                value=[
-                    {
-                        "id": 1,
-                        "name": "Eddard Stark",
-                        "date_of_birth": "1962-07-30",
-                        "patient_id": 101
-                    },
-                    {
-                        "id": 2,
-                        "name": "Robert Baratheon",
-                        "date_of_birth": "1960-03-02",
-                        "patient_id": 102
-                    }
-                ],
-            ),
-            OpenApiExample(
-                "Пример ошибки 404",
-                description="Доктор с указанным ID не найден.",
-                value={
-                    "detail": "Доктор не найден."
-                },
-            ),
-        ],
         responses={
             status.HTTP_200_OK: OpenApiResponse(
-                description="Список пациентов, доступ к которым подтверждён.",
+                description="Список пациентов, найденных по запросу",
                 response={
                     "type": "array",
                     "items": {
                         "type": "object",
                         "properties": {
-                            "id": {"type": "integer", "example": 1},
-                            "name": {"type": "string", "example": "Eddard Stark"},
-                            "date_of_birth": {"type": "string", "format": "date", "example": "1962-07-30"},
                             "patient_id": {"type": "integer", "example": 101},
+                            "patient_name": {"type": "string", "example": "Eddard Stark"},
+                            "date_of_birth": {"type": "string", "format": "date", "example": "1962-07-30"},
                         },
                     },
                 },
             ),
             status.HTTP_404_NOT_FOUND: OpenApiResponse(
-                description="Доктор не найден или у него нет подтверждённых пациентов.",
+                description="Доктор не найден.",
                 response={
                     "type": "object",
                     "properties": {
@@ -67,17 +40,21 @@ class PatientSearchView(APIView):
     )
     def post(self, request, doctor_id):
         serializer = PatientFilterSerializer(data=request.data)
+
+        # Отправлен плохой запрос
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        name = serializer.validated_data.get('name', '')
+        # Получаем данные из запроса
+        patient_name = serializer.validated_data.get('patient_name', '')
         date_of_birth = serializer.validated_data.get('date_of_birth', None)
-        patient_id = serializer.validated_data.get('id', None)
+        patient_id = serializer.validated_data.get('patient_id', None)
 
+        # Получаем данные всех пациентов
         queryset = Patient.objects.all()
 
-        if name:
-            queryset = queryset.filter(patient_name__icontains=name)
+        if patient_name:
+            queryset = queryset.filter(patient_name__icontains=patient_name)
 
         # Применяем фильтр по дате рождения и patient_id, если они указана
         if date_of_birth:

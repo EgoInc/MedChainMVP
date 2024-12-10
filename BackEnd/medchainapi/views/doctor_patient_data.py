@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from ..serializers import PatientSearchSerializer, PatientSerializer
-
+from ..models import Patient
 
 class PatientDataView(APIView):
     @extend_schema(
