@@ -19,14 +19,14 @@ class Doctor(models.Model):
     doctor_id = models.AutoField(primary_key=True)
     doctor_name = models.CharField(max_length=255)
     public_key = models.CharField(max_length=255, unique=True)  # Публичный ключ для аутентификации
-    organization = models.ForeignKey(MedicalOrganization, on_delete=models.CASCADE, related_name="doctors")
+    organization = models.ForeignKey(MedicalOrganization, on_delete=models.SET("deleted"), related_name="doctors")
     specialization = models.CharField(max_length=255)
 
 
 class AccessRequest(models.Model):
     request_id = models.AutoField(primary_key=True)
-    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name="access_requests")
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    doctor = models.ForeignKey(Doctor, on_delete=models.SET("deleted"), related_name="access_requests")
+    patient = models.ForeignKey(Patient, on_delete=models.SET("deleted"), related_name="access_requests")
     status = models.CharField(max_length=20, choices=[
         ('ожидание', 'ожидание'),
         ('подтверждено', 'подтверждено'),
@@ -37,7 +37,7 @@ class AccessRequest(models.Model):
 
 class ActionLog(models.Model):
     log_id = models.AutoField(primary_key=True)
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="action_logs")
-    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name="action_logs")
+    patient = models.ForeignKey(Patient, on_delete=models.SET("deleted"), related_name="action_logs")
+    doctor = models.ForeignKey(Doctor, on_delete=models.SET("deleted"), related_name="action_logs")
     action_type = models.CharField(max_length=50)
     action_date = models.DateTimeField(auto_now_add=True)
