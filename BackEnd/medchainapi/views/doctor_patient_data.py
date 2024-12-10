@@ -1,10 +1,11 @@
-from drf_spectacular.utils import extend_schema, OpenApiParameter
+from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from ..serializers import PatientSearchSerializer, PatientSerializer
 from ..models import Patient
+from ..serializers import PatientSearchSerializer, PatientSerializer
+
 
 class PatientDataView(APIView):
     @extend_schema(
