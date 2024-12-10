@@ -9,10 +9,24 @@ class PatientSerializer(serializers.ModelSerializer):
         fields = ['patient_id', 'patient_name', 'date_of_birth', 'contract_address']
 
 
+class DoctorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Doctor
+        fields = ['doctor_id', 'doctor_name', 'public_key', 'organization', 'specialization']
+
+
+class CreateDoctorSerializer(serializers.Serializer):
+    doctor_name = serializers.CharField(required=True, max_length=255)
+    public_key = serializers.CharField(required=True, max_length=255)  # Публичный ключ для аутентификации
+    organization_name = serializers.CharField(required=False, max_length=255)
+    organization_id = serializers.IntegerField(required=False)
+    specialization = serializers.CharField(required=True, max_length=255)
+
+
 class PatientFilterSerializer(serializers.Serializer):
-    name = serializers.CharField(required=True, allow_blank=False)
+    patient_name = serializers.CharField(required=True, allow_blank=False)
     date_of_birth = serializers.DateField(required=False, allow_null=True)
-    id = serializers.IntegerField(required=False, allow_null=True)
+    patient_id = serializers.IntegerField(required=False, allow_null=True)
 
 
 class AccessRequestSerializer(serializers.ModelSerializer):
