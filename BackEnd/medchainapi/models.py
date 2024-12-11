@@ -22,6 +22,9 @@ class Doctor(models.Model):
     organization = models.ForeignKey(MedicalOrganization, on_delete=models.SET("deleted"), related_name="doctors")
     specialization = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.doctor_name
+
 
 class AccessRequest(models.Model):
     request_id = models.AutoField(primary_key=True)

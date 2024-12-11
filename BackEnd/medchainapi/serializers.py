@@ -88,3 +88,16 @@ class RespondSerializer(serializers.Serializer):
     # TODO: выполнить проверку существования запроса
 
     message = serializers.CharField(max_length=255)
+
+
+class PatientIdSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Patient
+        fields = ['patient_id']
+
+
+class AccessRequestListSerializer(serializers.Serializer):
+    request_id = serializers.IntegerField(required=True)
+    doctor = serializers.CharField(required=True)
+    status = serializers.CharField(max_length=20)
+    request_date = serializers.DateTimeField(required=True)

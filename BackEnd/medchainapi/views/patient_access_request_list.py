@@ -8,22 +8,22 @@ from ..serializers import *
 
 class AccessRequestsListView(APIView):
     @extend_schema(
-        summary="Список запросов на доступ",
+        summary="Список запросов на доступ к конкретному пациенту",
         description="Позволяет посмотреть список запросов на доступ к данным пациента",
+        request=PatientIdSerializer,  # Указываем структуру тела запроса
         responses={
             status.HTTP_200_OK: OpenApiResponse(
-                description="Список запросов на доступ к данным пациента.",
+                description="Список запросов у данного пациента.",
                 response={
                     "type": "array",
                     "items": {
                         "type": "object",
                         "properties": {
-                            "id": {"type": "integer", "example": 1},
-                            "doctor_id": {"type": "integer", "example": 201},
-                            "patient_id": {"type": "integer", "example": 101},
-                            "status": {"type": "string", "example": "подтверждено"},
-                            "requested_at": {"type": "string", "format": "date-time",
-                                             "example": "2023-10-01T12:00:00Z"},
+                            "request_id": {"type": "integer", "example": 0},
+                            "doctor": {"type": "string", "example": "Eddard Stark"},
+                            "status": {"type": "string", "example": "ожидание"},
+                            "date_of_birth": {"type": "string", "format": "date",
+                                              "example": "2024-12-11T12:49:44.523077+03:00"},
                         },
                     },
                 },
@@ -42,7 +42,7 @@ class AccessRequestsListView(APIView):
     def get(self, request, patient_id):
         # Проверяем, существует ли пациент
         try:
-            patient = Patient.objects.get(id=patient_id)
+            patient = Patient.objects.get(patient_id=patient_id)
         except Patient.DoesNotExist:
             return Response(
                 {"detail": "Пациент не найден."},
@@ -53,6 +53,6 @@ class AccessRequestsListView(APIView):
         access_requests = AccessRequest.objects.filter(patient=patient)
 
         # Сериализуем данные
-        serializer = AccessRequestsListSerializer(access_requests, many=True)
+        serializer = AccessRequestListSerializer(access_requests, many=True)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
