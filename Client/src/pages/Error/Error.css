@@ -126,17 +126,26 @@
 }
 @media (max-width: 600px) {
   .error-content {
-    margin-top: -120%;
+    margin-top: -105%;
     width: 90%;
+    height: fit-content;
   }
   .error-content_form h2 {
-    font-size: 26px;
+    font-size: 20px;
   }
   .error-content_form p {
     font-size: 14px;
     text-align: start;
   }
-  .discribing {
-    height: 60%;
+  .error-content button {
+    height: 80px;
+    font-size: 14px;
+    width: 120px;
+  }
+}
+
+@media (max-height: 700px) {
+  .error-content {
+    margin-top: -20%;
   }
 }

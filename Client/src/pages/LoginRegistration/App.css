@@ -2,20 +2,25 @@ textarea {
   box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.25);
 }
 .login-registration {
-  width: 100%;
   display: flex;
   flex-direction: column;
   height: 50%;
+  align-items: center;
+  justify-content: center;
 }
 .login-registration-bottom {
+  width: 989px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  justify-content: space-between;
 }
+
 @media (max-width: 600px) {
+  .login-registration {
+    align-items: normal;
+  }
   .login-registration-bottom {
     flex-direction: column-reverse;
     row-gap: 10px;
+    width: 100%;
   }
 }
