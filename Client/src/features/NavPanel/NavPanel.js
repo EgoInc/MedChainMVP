@@ -28,7 +28,7 @@ const NavPanel = ({ routes }) => {
             <img src={Search} alt="Search" className="NavPanel_img" />
           </div>
         </div>
-        <div className="NavPanel-content-bottonIcon">
+        <div className="NavPanel-content-bottomIcon">
           <div
             className="NavPanel_logout"
             onClick={() => {
