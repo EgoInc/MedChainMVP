@@ -28,9 +28,10 @@ def create_doctor(validated_data):
         )
         return doctor, None
 
-    except IntegrityError:
+    except IntegrityError as e:
+        error_message = str(e).replace('\n', '')
         return None, Response(
-            {"detail": f"Doctor with public_key {public_key} already exists in database."},
+            {"detail": f"Integrity error occurred: {error_message}"},
             status=status.HTTP_400_BAD_REQUEST,
         )
 

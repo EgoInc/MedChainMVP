@@ -9,6 +9,12 @@ class PatientSerializer(serializers.ModelSerializer):
         fields = ['patient_id', 'patient_name', 'date_of_birth', 'contract_address']
 
 
+class CreatePatientSerializer(serializers.Serializer):
+    patient_name = serializers.CharField(max_length=255, required=True)
+    date_of_birth = serializers.DateField(required=True)
+    contract_address = serializers.CharField(max_length=42, required=True)
+
+
 class DoctorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Doctor

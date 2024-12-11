@@ -10,5 +10,5 @@ from .patient_access_request_list import AccessRequestsListView
 
 from .home_page import home
 
-from .create_patient import AddPatientView
+from .create_patient import CreatePatientView
 from .create_doctor import CreateDoctorView

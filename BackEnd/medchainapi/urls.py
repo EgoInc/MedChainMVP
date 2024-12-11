@@ -14,5 +14,6 @@ urlpatterns = [
     path('patient/<int:patient_id>/access-request/<int:request_id>/respond', RespondView.as_view(), name='respond'),
 
     path('create/create-doctor', CreateDoctorView.as_view(), name='create-doctor'),
+    path('create/create-patient', CreatePatientView.as_view(), name='create-patient'),
     path('', home, name='home-page'),
 ]
