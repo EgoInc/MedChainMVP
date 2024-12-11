@@ -27,7 +27,7 @@ class DoctorPatientListView(APIView):
                     },
                 },
             ),
-            status.HTTP_204_NO_CONTENT: OpenApiResponse(
+            status.HTTP_409_CONFLICT: OpenApiResponse(
                 description="Доктор найден, но у него нет подтверждённых пациентов.",
                 response={
                     "type": "object",
@@ -71,6 +71,6 @@ class DoctorPatientListView(APIView):
 
         # Если список пустой
         if not patients:
-            return Response({"detail": "У доктора еще нет пациентов."}, status=status.HTTP_204_NO_CONTENT)
+            return Response({"detail": "У доктора еще нет пациентов."}, status=status.HTTP_409_CONFLICT)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
