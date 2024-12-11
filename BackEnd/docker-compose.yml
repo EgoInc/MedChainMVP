@@ -6,7 +6,9 @@ services:
     container_name: medchain_web
     command: >
       sh -c "python manage.py migrate &&
-             python manage.py runserver 0.0.0.0:8000"
+        python manage.py createsuperuser --noinput
+        python manage.py runserver 0.0.0.0:8000
+        "
     volumes:
       - .:/app
     ports:
@@ -20,6 +22,9 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=medchain_db
       - POSTGRES_HOST=db
+      - DJANGO_SUPERUSER_USERNAME=admin
+      - DJANGO_SUPERUSER_EMAIL=admin@example.com
+      - DJANGO_SUPERUSER_PASSWORD=pass
 
   db:
     image: postgres:15

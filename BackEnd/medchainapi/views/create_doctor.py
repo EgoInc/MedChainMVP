@@ -57,17 +57,11 @@ class CreateDoctorView(APIView):
                 response={
                     "type": "object",
                     "properties": {
-                        "id": {"type": "integer", "example": 1},
+                        "doctor_id": {"type": "integer", "example": 1},
                         "doctor_name": {"type": "string", "example": "Daniel Radcliffe"},
                         "public_key": {"type": "string", "example": "0x0000000000000000000000000000000000000042"},
+                        "organization": {"type": "integer", "example": 1},
                         "specialization": {"type": "string", "example": "Wizards"},
-                        "organization": {
-                            "type": "object",
-                            "properties": {
-                                "id": {"type": "integer", "example": 42},
-                                "name": {"type": "string", "example": "City clinic №42"},
-                            },
-                        },
                     },
                 },
             ),
@@ -77,7 +71,9 @@ class CreateDoctorView(APIView):
                     "type": "object",
                     "properties": {
                         "detail": {"type": "string",
-                                   "example": "Doctor with public_key 0x0000 already exists in database."},
+                                   "example": "Integrity error occurred: duplicate key value violates unique constraint"
+                                              "\"medchainapi_doctor_public_key_key\"DETAIL:"
+                                              "Key (public_key)=(0x00) already exists."},
                     },
                 },
             ),
@@ -104,4 +100,4 @@ class CreateDoctorView(APIView):
             return error_response
 
         # Ответ с сериализованными данными
-        return Response(DoctorSerializer(new_doctor).data, status=status.HTTP_200_OK)
+        return Response(DoctorSerializer(new_doctor).data, status=status.HTTP_201_CREATED)

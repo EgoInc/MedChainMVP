@@ -24,8 +24,7 @@ class DoctorSerializer(serializers.ModelSerializer):
 class CreateDoctorSerializer(serializers.Serializer):
     doctor_name = serializers.CharField(required=True, max_length=255)
     public_key = serializers.CharField(required=True, max_length=255)  # Публичный ключ для аутентификации
-    organization_name = serializers.CharField(required=False, max_length=255)
-    organization_id = serializers.IntegerField(required=False)
+    organization_id = serializers.IntegerField(required=True)
     specialization = serializers.CharField(required=True, max_length=255)
 
 

@@ -49,10 +49,10 @@ class CreatePatientView(APIView):
                 response={
                     "type": "object",
                     "properties": {
-                        "id": {"type": "integer", "example": 1},
+                        "patient_id": {"type": "integer", "example": 1},
                         "patient_name": {"type": "string", "example": "Джон Смит"},
                         "date_of_birth": {"type": "string", "format": "date", "example": "1980-12-25"},
-                        "contract_address": {"type": "string", "example": "0x1234567890abcdef1234567890abcdef12345678"},
+                        "contract_address": {"type": "string", "example": "0x0000000000000000000000000000000000000000"},
                     },
                 },
             ),
@@ -63,7 +63,9 @@ class CreatePatientView(APIView):
                     "properties": {
                         "detail": {
                             "type": "string",
-                            "example": "Patient with contract_address 0x0000 already exists.",
+                            "example": "Integrity error occurred: duplicate key value violates unique constraint"
+                                       " \"medchainapi_patient_contract_address_key\"DETAIL:  "
+                                       "Key (contract_address)=(0x0000) already exists.",
                         },
                     },
                 },
