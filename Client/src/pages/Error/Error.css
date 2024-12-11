@@ -126,7 +126,17 @@
 }
 @media (max-width: 600px) {
   .error-content {
-    margin-top: -390px;
+    margin-top: -120%;
     width: 90%;
+  }
+  .error-content_form h2 {
+    font-size: 26px;
+  }
+  .error-content_form p {
+    font-size: 14px;
+    text-align: start;
+  }
+  .discribing {
+    height: 60%;
   }
 }
