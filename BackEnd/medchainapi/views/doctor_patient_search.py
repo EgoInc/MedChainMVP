@@ -28,11 +28,11 @@ class PatientSearchView(APIView):
                 },
             ),
             status.HTTP_404_NOT_FOUND: OpenApiResponse(
-                description="Доктор не найден.",
+                description="По данным запроса пациентов не найдено",
                 response={
                     "type": "object",
                     "properties": {
-                        "detail": {"type": "string", "example": "Доктор не найден."},
+                        "detail": {"type": "string", "example": "По данным запроса пациентов не найдено."},
                     },
                 },
             ),
@@ -40,10 +40,6 @@ class PatientSearchView(APIView):
     )
     def post(self, request, doctor_id):
         serializer = PatientFilterSerializer(data=request.data)
-
-        # Отправлен плохой запрос
-        if not serializer.is_valid():
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         # Получаем данные из запроса
         patient_name = serializer.validated_data.get('patient_name', '')
