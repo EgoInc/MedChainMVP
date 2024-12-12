@@ -11,9 +11,9 @@ urlpatterns = [
 
     path('patient/<int:patient_id>/access-requests', AccessRequestsListView.as_view(), name='access-requests'),
     path('patient/<int:patient_id>/authorized-doctors', AuthorizedDoctorsListView.as_view(), name='authorized-doctors'),
-    path('patient/<int:patient_id>/access-request/<int:request_id>/respond', RespondView.as_view(), name='respond'),
+    path('patient/<int:patient_id>/access-request/<int:request_id>/respond', AccessRespondView.as_view(), name='respond'),
 
-    path('create/create-doctor', CreateDoctorView.as_view(), name='create-doctor'),
-    path('create/create-patient', CreatePatientView.as_view(), name='create-patient'),
+    path('admin/add-doctor', CreateDoctorView.as_view(), name='add-doctor'),
+    path('admin/add-patient', CreatePatientView.as_view(), name='add-patient'),
     path('', home, name='home-page'),
 ]

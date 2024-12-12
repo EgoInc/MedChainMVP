@@ -49,7 +49,7 @@ class AccessRequestView(APIView):
                 response={
                     "type": "object",
                     "properties": {
-                        "detail": {"type": "string", "example": "Patient not found"},
+                        "detail": {"type": "string", "example": "Пациент / Доктор не найден"},
                     },
                 },
             ),
@@ -65,10 +65,10 @@ class AccessRequestView(APIView):
             patient = Patient.objects.get(patient_id=patient_id)
         except Patient.DoesNotExist:
             # Если пациента нет, возвращаем ошибку 404
-            return Response({"detail": "Patient not found"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"detail": "Пациент не найден"}, status=status.HTTP_404_NOT_FOUND)
         except Doctor.DoesNotExist:
             # Если доктора нет, возвращаем ошибку 404
-            return Response({"detail": "Doctor not found"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"detail": "Доктор не найден"}, status=status.HTTP_404_NOT_FOUND)
 
         # Проверяем, есть ли уже активный запрос от этого врача
         existing_request = AccessRequest.objects.filter(

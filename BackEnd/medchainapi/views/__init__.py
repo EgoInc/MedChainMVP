@@ -4,7 +4,7 @@ from .doctor_patient_list import DoctorPatientListView
 from .doctor_patient_search import PatientSearchView
 from .doctor_info import DoctorInfoView
 
-from .patient_respond import RespondView
+from .patient_access_respond import AccessRespondView
 from .patient_authorized_doctors import AuthorizedDoctorsListView
 from .patient_access_request_list import AccessRequestsListView
 

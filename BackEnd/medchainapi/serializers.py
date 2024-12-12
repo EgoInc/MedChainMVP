@@ -80,16 +80,6 @@ class AuthorizedDoctorsListSerializer(serializers.ModelSerializer):
         fields = ['doctor_id', 'doctor_name', 'organization_id', 'organization_name', 'specialization', 'access_date']
 
 
-class RespondSerializer(serializers.Serializer):
-    # class Meta:
-    #     approve = serializers.BooleanField()
-    #     model = AccessRequest
-    #     fields = ['request_id', 'patient_id', 'approve']
-    # TODO: выполнить проверку существования запроса
-
-    message = serializers.CharField(max_length=255)
-
-
 class PatientIdSerializer(serializers.ModelSerializer):
     class Meta:
         model = Patient
@@ -101,3 +91,9 @@ class AccessRequestListSerializer(serializers.Serializer):
     doctor = serializers.CharField(required=True)
     status = serializers.CharField(max_length=20)
     request_date = serializers.DateTimeField(required=True)
+
+
+class AccessRespondSerializer(serializers.Serializer):
+    patient_id = serializers.IntegerField(required=True)
+    request_id = serializers.IntegerField(required=True)
+    approve = serializers.BooleanField(required=True)
