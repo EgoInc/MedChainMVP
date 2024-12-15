@@ -2,6 +2,7 @@
   width: 83%;
   margin: 5% 0 0 11%;
   text-align: left;
+  max-width: 1440px;
 
   .main-part {
     display: flex;
@@ -9,10 +10,13 @@
     gap: 50px;
     flex-wrap: wrap;
   }
-
   .logo {
     position: absolute;
-    right: 5px;
     top: 5px;
+    right: 5px;
+    width: 15%;
+    height: 15%;
+    max-width: 160px;
+    max-height: 160px;
   }
 }

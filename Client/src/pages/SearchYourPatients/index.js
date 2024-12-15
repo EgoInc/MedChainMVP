@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NavPanel from "../../features/NavPanel/NavPanel";
-import Logo from "../../shared/FromDoctor/images/Logo.png";
+import Logo from "../../shared/Logo.svg";
 import SearchMenu from "../../features/SearchYourPatients/components/SearchMenu";
 import PatientList from "../../features/SearchYourPatients/components/PatientList";
 import sendRequest from "../../shared/SendRequest";

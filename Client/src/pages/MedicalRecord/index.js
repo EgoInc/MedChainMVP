@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./index.css";
-import Logo from "../../shared/FromDoctor/images/Logo.png";
+import Logo from "../../shared/Logo.svg";
 import MedicalRecordFilter from "../../features/MedicalRecord/components/MedicalRecordFilter";
 import AddNote from "../../features/MedicalRecord/components/AddNote";
 import Note from "../../features/MedicalRecord/components/Note";

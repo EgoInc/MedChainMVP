@@ -1,7 +1,7 @@
 import React from "react";
 import FilterableParentMenu from "../../features/FromDoctorRequests/components/FilterableParentMenu";
 import "./index.css";
-import Logo from "../../shared/FromDoctor/images/Logo.png";
+import Logo from "../../shared/Logo.svg";
 import NavPanel from "../../features/NavPanel/NavPanel";
 import { useParams } from "react-router-dom";
 

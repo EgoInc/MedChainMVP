@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./index.css";
 import Avatar from "../../features/FromPatient/components/Avatar";
-import Logo from "../../shared/FromDoctor/images/Logo.png";
+import Logo from "../../shared/Logo.svg";
 import DoctorCard from "../../features/DoctorsAccount/components/DoctorCard";
 
 function DoctorsAccount() {
@@ -24,4 +24,3 @@ function DoctorsAccount() {
 }
 
 export default DoctorsAccount;
-
