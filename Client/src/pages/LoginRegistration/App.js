@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "../../features/HeaderRegLogin/Header.js";
 import RegistrationForm from "../RegistrationForm/RegistrationForm.js";
+import NavPanel from "../../features/NavPanel/NavPanel.js";
 import LoginForm from "../LoginForm/LoginForm.js";
 import { useState } from "react";
 import Error from "../Error/Error.js";

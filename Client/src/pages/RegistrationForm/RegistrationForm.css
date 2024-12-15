@@ -157,11 +157,10 @@
 
 @media (max-width: 600px) {
   .singup-content {
-    margin-top: -20%;
     width: 90%;
     justify-content: center;
     align-items: center;
-    height: 80%;
+    height: fit-content;
   }
   .singup-content-text {
     text-align: right;
@@ -201,11 +200,13 @@
   }
   .old-button {
     margin-top: 5%;
+    margin-bottom: 10%;
   }
   .new-button {
     width: 40%;
     height: 60%;
-    margin-top: 20%;
+    margin-top: 5%;
+    margin-bottom: 10%;
   }
   .dont-show {
     display: none;
