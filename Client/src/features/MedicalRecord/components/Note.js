@@ -35,7 +35,7 @@ const Note = ({
           <h5>{type}</h5>
         </div>
 
-        <div>
+        <div className="toggle-layer">
           <button
             onClick={toggleTextOpen}
             className={`expand-button ${isTextOpen ? "expanded" : ""}`}

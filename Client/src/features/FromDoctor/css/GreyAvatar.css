@@ -1,0 +1,16 @@
+.grey-avatar {
+  @media (max-width: 600px) {
+    svg {
+      width: 180px;
+      height: 180px;
+    }
+  }
+
+  @media (min-width: 600px) {
+    svg {
+      width: 341px;
+      height: 341px;
+    }
+    order: 2;
+  }
+}

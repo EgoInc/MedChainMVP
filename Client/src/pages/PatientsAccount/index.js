@@ -1,29 +1,30 @@
 import React, { useEffect, useState } from "react";
 import "./index.css";
 import Avatar from "../../features/FromDoctor/components/Avatar";
-import Logo from "../../shared/FromDoctor/images/Logo.png";
+import Logo from "../../shared/Logo.svg";
 import PatientCard from "../../features/PatientsAccount/components/PatientCard";
 import MedCardHistory from "../../features/PatientsAccount/components/MedCardHistory";
 import SendRequest from "../../features/PatientsAccount/components/SendRequest";
 import NavPanel from "../../features/NavPanel/NavPanel";
 import formatDate from "../../shared/FormatDate";
 import sendRequest from "../../shared/SendRequest";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 function PatientsAccount() {
   const { doctorId } = useParams();
   const { patientId } = useParams();
+  const navigate = useNavigate();
+
   const routes = {
     person: `/doctor/${doctorId}`,
     search: `/doctor/${doctorId}/patients`,
     logout: "/",
   };
-  const [isRequestSent, setIsRequestSent] = useState(false);
 
-  const handleRequestSubmit = () => {
-    setIsRequestSent(true);
-  };
   const [patient, setPatient] = useState(null);
+  const [isRequestSent, setIsRequestSent] = useState(false);
+  const [requestId, setRequestId] = useState(null);
+  const [requestStatus, setRequestStatus] = useState("pending");
 
   useEffect(() => {
     const fetchPatient = async () => {
@@ -39,9 +40,39 @@ function PatientsAccount() {
 
     fetchPatient();
   }, [doctorId, patientId]);
+
+  // Отправка запроса
+  const handleRequestSubmit = (id) => {
+    setIsRequestSent(true);
+    setRequestId(id); // Сохраняем ID заявки
+    console.log(id);
+  };
+
+  // Обновление статуса заявки
+  // useEffect(() => {
+  //   if (requestId) {
+  //     const interval = setInterval(async () => {
+  //       try {
+  //         const response = await sendRequest(
+  //           `/requests/${requestId}/status`
+  //         );
+  //         setRequestStatus(response.status);
+  //         if (response.status === "approved") {
+  //           clearInterval(interval); // Останавливаем обновление, если заявка одобренаы
+  //         }
+  //       } catch (error) {
+  //         console.error("Ошибка при обновлении статуса заявки", error);
+  //       }
+  //     }, 5000);
+
+  //     return () => clearInterval(interval);
+  //   }
+  // }, [requestId, doctorId, patientId, navigate]);
+
   if (!patient) {
-    return <p>Загрузка данных пациента...</p>; // пока замещает пустую страницу при не найденном пациенте
+    return <p>Загрузка данных пациента...</p>;
   }
+
   return (
     <div className="patients-account">
       <NavPanel routes={routes} />

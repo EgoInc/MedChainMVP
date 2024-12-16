@@ -1,7 +1,7 @@
 import React from "react";
 import FilterableParentMenu from "../../features/FromDoctorRequests/components/FilterableParentMenu";
 import "./index.css";
-import Logo from "../../shared/FromDoctor/images/Logo.png";
+import Logo from "../../shared/Logo";
 import NavPanel from "../../features/NavPanel/NavPanel";
 import { useParams } from "react-router-dom";
 
@@ -16,7 +16,7 @@ function FromDoctorRequests() {
   return (
     <div className="from-doctor-requests">
       <NavPanel routes={routes} />
-      <img src={Logo} alt="Logo" className="logo" />
+      <Logo className="logo" />
       <h2>Отправленные заявки</h2>
       <FilterableParentMenu />
     </div>

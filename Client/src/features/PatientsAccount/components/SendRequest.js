@@ -1,41 +1,53 @@
 import React, { useState } from "react";
 import Toggle from "../../FromDoctor/components/Toggle";
 import "../css/SendRequest.css";
+import { useParams } from "react-router-dom";
 
 const SendRequest = ({ onSubmit }) => {
-  const [checkboxes, setCheckboxes] = useState({
-    accessRequest: false,
-    studyHistory: false,
-    editHistory: false,
-  });
-
-  const handleCheckboxChange = (e) => {
-    const { id, checked } = e.target;
-    setCheckboxes((prevState) => ({
-      ...prevState,
-      [id]: checked,
-    }));
-  };
-
-  const isAnyChecked = Object.values(checkboxes).some((checked) => checked);
-
+  const { doctorId } = useParams();
   const [isExpanded, setIsExpanded] = useState(false);
+  const [requestData, setRequestData] = useState(""); // Тип заявки
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // Для состояния загрузки
+  const [error, setError] = useState(null); // Для отображения ошибок
+
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
-  const [requestData, setRequestData] = useState("");
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const handleOptionChange = (e) => {
+    setRequestData(e.target.value); // Устанавливаем выбранный тип заявки
+  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Предотвращаем перезагрузку страницы
-    setIsSubmitted(true); // Обновляем состояние на "отправлено"
-    onSubmit(); // Вызываем функцию, переданную из родительского компонента
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch(`/doctor/${doctorId}/request-access`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (!response.ok) {
+        throw new Error("Ошибка при создании заявки");
+      }
+
+      const data = await response.json(); // Получаем ID заявки из ответа
+      setIsSubmitted(true);
+      onSubmit(data.request_id); // Передаём ID заявки в родительский компонент
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (isSubmitted) {
     return <p className="send-request submitted">Заявка отправлена</p>;
   }
+
   return (
     <div
       className={`send-request ${isExpanded ? "expanded" : ""}`}
@@ -43,37 +55,33 @@ const SendRequest = ({ onSubmit }) => {
     >
       <p>Отправить заявку</p>
       {isExpanded && (
-        // предотвращаем кликабельность внутри формы
         <div className="request-menu" onClick={(e) => e.stopPropagation()}>
           <form onSubmit={handleSubmit}>
             <div className="send-request-labels">
               <label>
                 <input
-                  type="checkbox"
-                  value={requestData}
-                  onChange={handleCheckboxChange}
-                  id="accessRequest"
-                  checked={checkboxes.accessRequest}
+                  type="radio"
+                  value="accessRequest"
+                  onChange={handleOptionChange}
+                  checked={requestData === "accessRequest"}
                 />
                 Запрос доступа
               </label>
               <label>
                 <input
-                  type="checkbox"
-                  value={requestData}
-                  onChange={handleCheckboxChange}
-                  id="studyHistory"
-                  checked={checkboxes.studyHistory}
+                  type="radio"
+                  value="studyHistory"
+                  onChange={handleOptionChange}
+                  checked={requestData === "studyHistory"}
                 />
                 Изучение мед карты
               </label>
               <label>
                 <input
-                  type="checkbox"
-                  value={requestData}
-                  onChange={handleCheckboxChange}
-                  id="editHistory"
-                  checked={checkboxes.editHistory}
+                  type="radio"
+                  value="editHistory"
+                  onChange={handleOptionChange}
+                  checked={requestData === "editHistory"}
                 />
                 Изменение мед карты
               </label>
@@ -81,11 +89,12 @@ const SendRequest = ({ onSubmit }) => {
             <button
               type="submit"
               className="submit-button"
-              disabled={!isAnyChecked}
+              disabled={!requestData || isLoading}
             >
-              Отправить
+              {isLoading ? "Отправка..." : "Отправить"}
             </button>
           </form>
+          {error && <p className="error">{error}</p>}
         </div>
       )}
       <button
