@@ -1,15 +1,9 @@
 import React from "react";
 import "../css/PatientCard.css";
 
-const PatientCard = ({
-  lastName,
-  name,
-  secondName,
-  id,
-  birthDate
-}) => {
+const PatientCard = ({ lastName, name, secondName, id, birthDate }) => {
   return (
-    <div className={"patient-card"}>
+    <div className={"from-patient-patient-card"}>
       <div className="text-container">
         <h4>
           {lastName} {name} {secondName}

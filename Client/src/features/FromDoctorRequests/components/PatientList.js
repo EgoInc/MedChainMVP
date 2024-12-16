@@ -53,7 +53,7 @@ const PatientList = ({ filters }) => {
         <Patient
           patient_id={patient.patient_id}
           name={patient.name}
-          dateOfBitth={patient.date_of_birth}
+          date_of_birth={patient.date_of_birth}
           status={patient.status}
         />
       ))}

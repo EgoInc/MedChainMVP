@@ -1,8 +1,9 @@
 import React from "react";
+import "../css/FormButtons.css";
 
 const Filter = () => {
   return (
-    <div className="filter">
+    <div className="filter form-buttons">
       <svg
         width="80"
         height="80"

@@ -7,19 +7,15 @@
   text-align: left;
 
   @media (max-width: 600px) {
-    width: 85%;
     align-items: center;
-    margin: 100px 7.5%;
-    logo {
-      svg {
-        width: 10%;
-        height: 10%;
-      }
-    }
-
+    width: 100%;
+    margin: 100px auto;
     h2 {
       font-size: 26px;
       margin-left: 7.5%;
+    }
+    .from-doctor-requests-inner-box {
+      padding: 10px;
     }
   }
 
@@ -27,7 +23,11 @@
     align-items: flex-start;
 
     width: 83%;
-    margin: 5% 0 0 11%;
+    margin: 100px 0 0 11%;
+
+    .from-doctor-requests-inner-box {
+      width: 100%;
+    }
     logo {
       svg {
         width: 160px;
@@ -37,19 +37,19 @@
 
     h2 {
       font-size: 48px;
+      line-height: 56.88px;
     }
   }
 
   h2 {
     color: #141414;
     font-weight: 400;
-    line-height: 56.88px;
-    margin-bottom: -10px;
-    width: 100%;
+    margin-bottom: 20px;
   }
   .logo {
     position: absolute;
     top: 5px;
     right: 5px;
+    z-index: -1;
   }
 }

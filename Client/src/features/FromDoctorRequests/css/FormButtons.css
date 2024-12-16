@@ -1,0 +1,15 @@
+.form-buttons {
+  @media (max-width: 600px) {
+    svg {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  @media (min-width: 600px) {
+    svg {
+      width: 80px;
+      height: 80px;
+    }
+  }
+}

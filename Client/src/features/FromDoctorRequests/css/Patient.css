@@ -2,46 +2,109 @@
   border-radius: 30px;
   display: flex;
   justify-content: flex-start;
-  gap: 20px;
-  height: 130px;
-  align-items: center;
   text-align: left;
-  padding: 20px;
   position: relative;
   border-color: black;
-  width: 100%;
+
+  @media (max-width: 600px) {
+    height: 70px;
+    padding: 20px 10px 0px 10px;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+    min-width: fit-content;
+
+    .date-of-birth {
+      display: none;
+    }
+
+    p {
+      font-size: 14px;
+    }
+
+    h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    .requests-avatar {
+      svg {
+        width: 50px;
+        height: 50px;
+      }
+    }
+    .patient-text-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .patient-info {
+      display: flex;
+      width: 100%;
+    }
+
+    .toggle-button {
+      bottom: 15px;
+      right: 15px;
+    }
+  }
+
+  @media (min-width: 600px) {
+    height: 130px;
+    width: 100%;
+    padding: 20px;
+    gap: 20px;
+
+    align-items: center;
+
+    p {
+      font-size: 28px;
+      line-height: 33.18px;
+    }
+
+    h3 {
+      font-size: 32px;
+      line-height: 37.92px;
+      margin-bottom: 10px;
+    }
+    .requests-avatar {
+      svg {
+        width: 90.32px;
+        height: 90px;
+      }
+    }
+    .status {
+      position: absolute;
+      top: 25px;
+      right: 30px;
+    }
+    .patient-info {
+      width: 80%;
+    }
+
+    .toggle-button {
+      bottom: 30px;
+      right: 30px;
+    }
+
+    .patient-text-box {
+      display: flex;
+      width: 100%;
+    }
+  }
 
   .toggle-button {
     position: absolute;
-    bottom: 30px;
-    right: 30px;
     transform: rotate(-90deg);
   }
   p {
     color: #656565;
-    font-size: 28px;
     font-weight: 400;
-    line-height: 33.18px;
     margin-top: 0;
   }
 
-  .patient-info {
-    width: 80%;
-  }
-
   h3 {
-    font-size: 32px;
-    line-height: 37.92px;
     font-weight: 400;
     color: #2f2f2f;
-    margin-bottom: 10px;
-  }
-
-  .status {
-    text-align: right;
-    position: absolute;
-    top: 25px;
-    right: 30px;
   }
 }
 

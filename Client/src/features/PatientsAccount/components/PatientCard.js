@@ -4,7 +4,7 @@ import "../css/PatientCard.css";
 
 const PatientCard = ({ name, patient_id, date_of_birth }) => {
   return (
-    <div className="patient-card">
+    <div className="from-doctor-patient-card">
       <div className="patient-card-info">
         <h4>{name}</h4>
         <p>id: {patient_id}</p>

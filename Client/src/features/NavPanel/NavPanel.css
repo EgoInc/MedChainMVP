@@ -6,6 +6,7 @@
   width: 8vw;
   background: #adc4f7;
   border-radius: 0px 40px 40px 0px;
+  min-width: fit-content;
 }
 
 .navPanel-content {
@@ -50,12 +51,14 @@
 }
 @media (max-width: 600px) {
   .navPanel {
+    min-width: fit-content;
+
     padding: 5px;
     margin-top: 10px;
     margin-left: 10px;
     position: absolute;
     width: 50%;
-    height: 7%;
+    height: 60px;
     border-radius: 20px;
     opacity: 0px;
     display: flex;

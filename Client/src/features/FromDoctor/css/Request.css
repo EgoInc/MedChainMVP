@@ -11,7 +11,9 @@
   order: 3;
 
   @media (max-width: 600px) {
-    width: 85%;
+    min-width: fit-content;
+
+    width: 100%;
     .request-text-container {
       padding: 20px;
       min-height: 180px;

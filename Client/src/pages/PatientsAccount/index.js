@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./index.css";
-import Avatar from "../../features/FromDoctor/components/Avatar";
-import Logo from "../../shared/Logo.svg";
+import GreyAvatar from "../../features/FromDoctor/components/GreyAvatar";
+import Logo from "../../shared/Logo";
 import PatientCard from "../../features/PatientsAccount/components/PatientCard";
 import MedCardHistory from "../../features/PatientsAccount/components/MedCardHistory";
 import SendRequest from "../../features/PatientsAccount/components/SendRequest";
@@ -76,13 +76,14 @@ function PatientsAccount() {
   return (
     <div className="patients-account">
       <NavPanel routes={routes} />
-      <img src={Logo} alt="Logo" className="logo" />
+      <Logo className="logo" />
+      <GreyAvatar className="avatar" />
+
       <PatientCard
         name={patient.name}
         patient_id={patient.patient_id}
         date_of_birth={formatDate(patient.date_of_birth)}
       />
-      <Avatar className="avatar" />
       <MedCardHistory isRequestSent={isRequestSent} />
       <SendRequest onSubmit={handleRequestSubmit} />
     </div>

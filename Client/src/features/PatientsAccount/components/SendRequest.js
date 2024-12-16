@@ -53,56 +53,58 @@ const SendRequest = ({ onSubmit }) => {
       className={`send-request ${isExpanded ? "expanded" : ""}`}
       onClick={toggleExpand}
     >
-      <p>Отправить заявку</p>
-      {isExpanded && (
-        <div className="request-menu" onClick={(e) => e.stopPropagation()}>
-          <form onSubmit={handleSubmit}>
-            <div className="send-request-labels">
-              <label>
-                <input
-                  type="radio"
-                  value="accessRequest"
-                  onChange={handleOptionChange}
-                  checked={requestData === "accessRequest"}
-                />
-                Запрос доступа
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  value="studyHistory"
-                  onChange={handleOptionChange}
-                  checked={requestData === "studyHistory"}
-                />
-                Изучение мед карты
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  value="editHistory"
-                  onChange={handleOptionChange}
-                  checked={requestData === "editHistory"}
-                />
-                Изменение мед карты
-              </label>
-            </div>
-            <button
-              type="submit"
-              className="submit-button"
-              disabled={!requestData || isLoading}
-            >
-              {isLoading ? "Отправка..." : "Отправить"}
-            </button>
-          </form>
-          {error && <p className="error">{error}</p>}
-        </div>
-      )}
-      <button
-        onClick={toggleExpand}
-        className={`toggle-button ${isExpanded ? "expanded" : ""}`}
-      >
-        <Toggle />
-      </button>
+      <div className="med-card-request-inner-container">
+        <p>Отправить заявку</p>
+        {isExpanded && (
+          <div className="request-menu" onClick={(e) => e.stopPropagation()}>
+            <form onSubmit={handleSubmit}>
+              <div className="send-request-labels">
+                <label>
+                  <input
+                    type="radio"
+                    value="accessRequest"
+                    onChange={handleOptionChange}
+                    checked={requestData === "accessRequest"}
+                  />
+                  Запрос доступа
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    value="studyHistory"
+                    onChange={handleOptionChange}
+                    checked={requestData === "studyHistory"}
+                  />
+                  Изучение мед карты
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    value="editHistory"
+                    onChange={handleOptionChange}
+                    checked={requestData === "editHistory"}
+                  />
+                  Изменение мед карты
+                </label>
+              </div>
+              <button
+                type="submit"
+                className="submit-button"
+                disabled={!requestData || isLoading}
+              >
+                {isLoading ? "Отправка..." : "Отправить"}
+              </button>
+            </form>
+            {error && <p className="error">{error}</p>}
+          </div>
+        )}
+        <button
+          onClick={toggleExpand}
+          className={`toggle-button ${isExpanded ? "expanded" : ""}`}
+        >
+          <Toggle />
+        </button>
+      </div>
     </div>
   );
 };

@@ -15,14 +15,16 @@ const Patient = ({ name, date_of_birth, patient_id }) => {
       className="search-your-patient"
       onClick={() => navigate(pathToPatientCard)}
     >
-      <PatientAvatar />
-      <div className="patient-info">
-        <h3>{name}</h3>
-        <p>{formatDate(date_of_birth)}</p>
+      <div className="patient-inner-box">
+        <PatientAvatar />
+        <div className="patient-info">
+          <h3>{name}</h3>
+          <p>{formatDate(date_of_birth)}</p>
+        </div>
+        <button onClick={() => navigate(pathToPatientCard)}>
+          <Toggle />
+        </button>
       </div>
-      <button onClick={() => navigate(pathToPatientCard)}>
-        <Toggle />
-      </button>
     </div>
   );
 };

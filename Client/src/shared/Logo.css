@@ -2,6 +2,7 @@
   position: absolute;
   top: 5px;
   right: 5px;
+  z-index: -1;
   @media (max-width: 600px) {
     svg {
       width: 100px;

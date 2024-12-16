@@ -15,10 +15,12 @@ function FromDoctorRequests() {
 
   return (
     <div className="from-doctor-requests">
-      <NavPanel routes={routes} />
-      <Logo className="logo" />
-      <h2>Отправленные заявки</h2>
-      <FilterableParentMenu />
+      <div className="from-doctor-requests-inner-box">
+        <NavPanel routes={routes} />
+        <Logo className="logo" />
+        <h2>Отправленные заявки</h2>
+        <FilterableParentMenu />
+      </div>
     </div>
   );
 }

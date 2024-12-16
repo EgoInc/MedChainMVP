@@ -1,13 +1,43 @@
 .send-request {
   position: relative;
-  width: 36%;
-  min-height: 100px;
-  gap: 0px;
+  height: auto;
   border-radius: 20px;
   opacity: 0px;
   background-color: #bcd9ff;
   text-align: left;
-  padding: 40px 0 40px 35px;
+
+  @media (max-width: 600px) {
+    min-width: fit-content;
+    width: 85%;
+    min-height: 159px;
+
+    .med-card-request-inner-container {
+      width: 85%;
+      padding: 20px;
+    }
+    p {
+      font-size: 24px;
+      line-height: 28.44px;
+    }
+
+    .toggle-button {
+      right: 15px;
+      bottom: 15px;
+    }
+  }
+
+  @media (min-width: 600px) {
+    order: 4;
+    width: 36%;
+    min-height: 100px;
+    gap: 0px;
+    padding: 40px 0 40px 35px;
+
+    .toggle-button {
+      right: 25px;
+      bottom: 25px;
+    }
+  }
 
   .toggle-button {
     background: 0;
@@ -25,20 +55,13 @@
     transform: rotate(180deg);
   }
 
-  p {
-    font-size: 30px;
-    font-weight: 400;
-    line-height: 35.55px;
-    margin-bottom: 20px;
-  }
-
   .request-menu {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
 
     form {
-      width: 100%;
+      margin: 0;
     }
 
     button {
@@ -69,7 +92,16 @@
     font-size: 18px;
     font-weight: 400;
     line-height: 21.33px;
-    width: 100%;
+
+    /* @media (max-width: 600px) {
+      font-size: 18px;
+      line-height: 21.33px;
+    }
+
+    @media (min-width: 600px) {
+      line-height: 21.33px;
+      width: 100%;
+    } */
 
     label {
       display: flex;
@@ -111,18 +143,36 @@
 }
 
 .send-request.expanded {
-  max-height: 300px;
+  @media (max-width: 600px) {
+    min-height: 270px;
+    background-color: #bcd9ff;
+    .med-card-request-inner-container {
+      padding-bottom: 20px;
+    }
+    p {
+      margin-bottom: 20px;
+    }
+  }
+  @media (min-width: 600px) {
+    max-height: 300px;
+  }
 }
 
 .send-request.submitted {
   margin: 0;
   background-color: #c2f3bf;
-  padding: 30px 0 170px 25px;
-  max-height: 300px;
   font-family: Rubik;
-  font-size: 30px;
   font-weight: 400;
-  line-height: 35.55px;
+
+  @media (max-width: 600px) {
+    font-size: 24px;
+    line-height: 28.44px;
+  }
+
+  @media (min-width: 600px) {
+    line-height: 35.55px;
+    font-size: 30px;
+  }
 }
 .send-request:hover {
   cursor: pointer;

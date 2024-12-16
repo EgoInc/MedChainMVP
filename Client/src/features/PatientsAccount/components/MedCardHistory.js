@@ -18,12 +18,14 @@ const MedCardHistory = ({ isRequestSent }) => {
       className={`med-card-history ${getClassStatus}`}
       onClick={openMedicalHistory}
     >
-      <p>История мед. карты</p>
-      {isRequestSent && (
-        <button onClick={openMedicalHistory}>
-          <Toggle />
-        </button>
-      )}
+      <div className="med-card-inner-container">
+        <p>История мед. карты</p>
+        {isRequestSent && (
+          <button onClick={openMedicalHistory}>
+            <Toggle />
+          </button>
+        )}
+      </div>
     </div>
   );
 };

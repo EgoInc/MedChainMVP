@@ -1,13 +1,14 @@
 import React from "react";
-const PatientAvatar = ({ src, size = 100 }) => {
+import "../css/PatientAvatar.css";
+const PatientAvatar = ({ src }) => {
   return (
     <div className="patient-avatar">
       {src ? (
         <img src={src} alt="Avatar" className="patient-avatar-pic" />
       ) : (
         <svg
-          width="92"
-          height="90"
+          width=""
+          height=""
           viewBox="0 0 92 90"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

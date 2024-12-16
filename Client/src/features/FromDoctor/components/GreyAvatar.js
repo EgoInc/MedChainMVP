@@ -1,12 +1,12 @@
 import React from "react";
 import "../css/GreyAvatar.css";
 
-const GreyAvatar = (width, height) => {
+const GreyAvatar = () => {
   return (
     <div className="grey-avatar">
       <svg
-        width={width}
-        height={height}
+        width=""
+        height=""
         viewBox="0 0 180 180"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

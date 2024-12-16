@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NavPanel from "../../features/NavPanel/NavPanel";
-import Logo from "../../shared/Logo.svg";
+import Logo from "../../shared/Logo";
 import SearchMenu from "../../features/SearchYourPatients/components/SearchMenu";
 import PatientList from "../../features/SearchYourPatients/components/PatientList";
 import sendRequest from "../../shared/SendRequest";
@@ -42,7 +42,7 @@ function SearchPatients() {
   return (
     <div className="search-patients">
       <NavPanel routes={routes} />
-      <img src={Logo} alt="Logo" className="logo" />
+      <Logo className="logo" />
       <h2>Список пациентов</h2>
       <SearchMenu onSearch={handleSearch} />
       <PatientList patients={patients} searchFilter={searchFilter} />

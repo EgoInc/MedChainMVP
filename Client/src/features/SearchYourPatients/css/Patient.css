@@ -1,22 +1,71 @@
 .search-your-patient {
   border-radius: 30px;
-  display: flex;
-  justify-content: flex-start;
-  gap: 20px;
-  max-height: 100px;
-  align-items: center;
   text-align: left;
-  padding: 30px 20px;
   position: relative;
   background-color: #bcd9ff;
-  min-width: 45%;
+
+  @media (max-width: 600px) {
+    min-height: 88px;
+    min-width: fit-content;
+    width: 100%;
+    h3 {
+      font-size: 18px;
+      line-height: 21.33px;
+      margin: 0;
+    }
+    p {
+      font-size: 14px;
+      line-height: 16.59px;
+      margin: 0;
+    }
+
+    .patient-inner-box {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 20px 5px 5px 10px;
+    }
+
+    button {
+      bottom: 15px;
+      right: 15px;
+    }
+  }
+
+  @media (min-width: 600px) {
+    min-width: 45%;
+    padding: 30px 20px;
+    max-height: 100px;
+
+    .patient-inner-box {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    h3 {
+      font-size: 32px;
+      line-height: 37.92px;
+    }
+
+    p {
+      font-size: 28px;
+      line-height: 33.18px;
+    }
+
+    button {
+      bottom: 30px;
+      right: 30px;
+    }
+  }
 
   button {
     background: 0;
     border: 0;
     position: absolute;
-    bottom: 30px;
-    right: 30px;
     transform: rotate(-90deg);
   }
   button:active {
@@ -25,9 +74,7 @@
 
   p {
     color: #656565;
-    font-size: 28px;
     font-weight: 400;
-    line-height: 33.18px;
     margin-top: 0;
   }
   .patient-info {
@@ -39,8 +86,6 @@
   }
 
   h3 {
-    font-size: 32px;
-    line-height: 37.92px;
     font-weight: 400;
     color: #2f2f2f;
     margin-bottom: 10px;
