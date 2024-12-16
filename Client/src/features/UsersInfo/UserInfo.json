@@ -1,0 +1,7 @@
+[
+  {
+    "emailOrPhone": "patient@example.com",
+    "password": "patient123",
+    "userType": "patient"
+  }
+]
