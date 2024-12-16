@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./LoginForm.css";
 import { formatPhone } from "../../features/RegistrationFormAndLoginForm/formatPhone";
+import UserInfo from "../../features/UsersInfo/UserInfo.json";
+console.log(UserInfo);
 const LoginForm = ({ errorText, setError }) => {
   const [formData, setFormData] = useState({
     emailOrPhone: "",
@@ -62,13 +64,35 @@ const LoginForm = ({ errorText, setError }) => {
     if (errorMessages) {
       alert(`Пожалуйста, исправьте следующие ошибки:\n\n${errorMessages}`);
     } else {
-      const userExists = false;
-      if (!userExists) {
-        setError(true);
-      } else {
-        alert("Данные для входа отправлены успешно!");
-      }
+      // Проверка данных с файлом JSON
+      checkUserCredentials(formData);
     }
+  };
+
+  const checkUserCredentials = (formData) => {
+    fetch(UserInfo)
+      .then((response) => response.json())
+      .then((users) => {
+        const user = users.find(
+          (user) =>
+            (user.emailOrPhone === formData.emailOrPhone ||
+              user.phone === formData.emailOrPhone) &&
+            user.password === formData.password &&
+            user.userType === formData.userType
+        );
+
+        if (user) {
+          alert("Вход выполнен успешно!");
+        } else {
+          setError(true);
+          alert("Неверные данные для входа.");
+        }
+      })
+      .catch((error) => {
+        console.error("Ошибка при получении данных пользователей:", error);
+        setError(true);
+        alert("Произошла ошибка при проверке данных.");
+      });
   };
 
   return (

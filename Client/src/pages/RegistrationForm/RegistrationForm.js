@@ -5,6 +5,7 @@ import { formatSnils } from "../../features/RegistrationForm/formatSnils";
 import { formatInsuranceNumber } from "../../features/RegistrationForm/formatInsurance";
 import { formatPhone } from "../../features/RegistrationFormAndLoginForm/formatPhone";
 import { validate } from "../../features/RegistrationForm/validation";
+
 const RegistrationForm = ({ onButtonClick, onSuccess }) => {
   const [inputs, setInputs] = useState(false);
   const [formData, setFormData] = useState({
@@ -48,19 +49,31 @@ const RegistrationForm = ({ onButtonClick, onSuccess }) => {
     if (isValid) {
       alert("Форма успешно отправлена");
       onSuccess();
-      //Здесь отправка формы на бэк(?)
+
+      // Генерация JSON объекта
+      const jsonData = JSON.stringify(formData, null, 2);
+
+      // Создание Blob объекта
+      const blob = new Blob([jsonData], { type: "application/json" });
+
+      // Создание ссылки для скачивания
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "formData.json"; // Имя файла
+
+      // Программно кликаем на ссылку для скачивания
+      link.click();
     } else {
       alert(`Пожалуйста, исправьте следующие ошибки:\n\n${errorMessages}`);
     }
   };
 
-  //Верстка
   return (
     <div className="singup">
       <div className="singup-content">
         <form onSubmit={handleSubmit} className="signup-content_form">
           <h2 className="singup-content-text">Данные для регистрации</h2>
-          <div className="singup-content-flex ">
+          <div className="singup-content-flex">
             {/* Левая часть формы */}
             <div
               className={`singup-content-left ${
@@ -123,8 +136,7 @@ const RegistrationForm = ({ onButtonClick, onSuccess }) => {
               />
             </div>
 
-            {/* Правая */}
-
+            {/* Правая часть формы */}
             <div
               className={`singup-content-right ${
                 inputs && "singup-content-right-mobile-active"
@@ -188,7 +200,7 @@ const RegistrationForm = ({ onButtonClick, onSuccess }) => {
 
           {/* Чекбокс и кнопка */}
           <div className="checkbox-container">
-            {/*Левая часть нижней части */}
+            {/* Левая часть нижней части */}
             {inputs && (
               <div className="checkbox-container-left">
                 <label htmlFor="accept">
@@ -205,8 +217,8 @@ const RegistrationForm = ({ onButtonClick, onSuccess }) => {
               </div>
             )}
 
-            {/*Правая часть нижней части */}
-            <div className="checkbox-container-right ">
+            {/* Правая часть нижней части */}
+            <div className="checkbox-container-right">
               {inputs ? (
                 <button
                   type="submit"
@@ -219,7 +231,6 @@ const RegistrationForm = ({ onButtonClick, onSuccess }) => {
                 <button
                   onClick={() => setInputs(true)}
                   className={`${!inputs && "new-button"}`}
-                  X
                 >
                   Далее &gt;
                 </button>
