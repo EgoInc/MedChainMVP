@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import "./LoginForm.css";
 import { formatPhone } from "../../features/RegistrationFormAndLoginForm/formatPhone";
 import UserInfo from "../../features/UsersInfo/UserInfo.json";
+import { useNavigate } from "react-router-dom";
+
 console.log(UserInfo);
+
 const LoginForm = ({ errorText, setError }) => {
   const [formData, setFormData] = useState({
     emailOrPhone: "",
@@ -10,6 +13,7 @@ const LoginForm = ({ errorText, setError }) => {
     userType: "",
   });
 
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -82,7 +86,11 @@ const LoginForm = ({ errorText, setError }) => {
         );
 
         if (user) {
-          alert("Вход выполнен успешно!");
+          if (user.userType === "patient") {
+            navigate("/patient/:patientId/"); // Перенаправление на страницу пациента
+          } else if (user.userType === "doctor") {
+            navigate("/doctor/:doctorId"); // Перенаправление на страницу врача
+          }
         } else {
           setError(true);
           alert("Неверные данные для входа.");
