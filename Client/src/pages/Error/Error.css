@@ -61,12 +61,14 @@
 .error-content textarea {
   padding-top: 10px;
   width: 94%;
+  height: 100px;
   border-radius: 20px;
   border: 1px solid #959595;
   padding-left: 10px;
   padding-right: 10px;
   transition: 0.3s;
   background-color: #fff;
+  resize: none;
 }
 
 .error-content input:focus {
