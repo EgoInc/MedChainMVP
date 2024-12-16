@@ -50,6 +50,10 @@
 }
 @media (max-width: 600px) {
   .navPanel {
+    padding: 5px;
+    margin-top: 10px;
+    margin-left: 10px;
+    position: absolute;
     width: 50%;
     height: 7%;
     border-radius: 20px;

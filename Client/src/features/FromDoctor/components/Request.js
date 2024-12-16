@@ -29,11 +29,17 @@ const Request = () => {
 
   return (
     <div className="request" onClick={() => navigate(pathToRequests)}>
-      <p>Отправленные заявки</p>
-      {numOfRequests ? <p className="show">{`+${numOfRequests}`}</p> : <p></p>}
-      <button onClick={() => navigate(pathToRequests)}>
-        <Toggle />
-      </button>
+      <div className="request-text-container">
+        <p>Отправленные заявки</p>
+        {numOfRequests ? (
+          <p className="show">{`+${numOfRequests}`}</p>
+        ) : (
+          <p></p>
+        )}
+        <button onClick={() => navigate(pathToRequests)}>
+          <Toggle />
+        </button>
+      </div>
     </div>
   );
 };

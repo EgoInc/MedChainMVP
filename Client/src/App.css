@@ -22,6 +22,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  position: relative; /* для того, чтобы лого позиционировалось относительно всего сайта */
 }
 
 .App-link {

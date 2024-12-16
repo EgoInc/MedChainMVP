@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import DoctorCard from "../../features/FromDoctor/components/DoctorCard";
 import "./index.css";
-import Avatar from "../../features/FromDoctor/components/Avatar";
-import Logo from "../../shared/Logo.svg";
+import Logo from "../../shared/Logo";
 import Request from "../../features/FromDoctor/components/Request";
 import Patients from "../../features/FromDoctor/components/Patients";
 import NavPanel from "../../features/NavPanel/NavPanel";
 import { useParams } from "react-router-dom";
 import sendRequest from "../../shared/SendRequest";
+import GreyAvatar from "../../features/FromDoctor/components/GreyAvatar";
 
 function FromDoctor() {
   const { doctorId } = useParams();
@@ -74,7 +74,9 @@ function FromDoctor() {
     <div className="from-doctor">
       <NavPanel routes={routes} />
       <div className="main-part">
+        <GreyAvatar className="from-doctor-avatar" />
         <DoctorCard
+          className="from-doctor-doctor-card"
           name={doctor ? doctor.doctor_name : "null"}
           location={doctor ? doctor.organization_name : "null"}
           doctor_id={doctorId}
@@ -82,10 +84,9 @@ function FromDoctor() {
           email={doctor ? doctor.email : "null"}
           specialization={doctor ? doctor.specialization : "null"}
         />
-        <Avatar className="avatar" />
-        <img src={Logo} alt="Logo" className="logo" />
-        <Request />
-        <Patients />
+        <Logo />
+        <Request className="from-doctor-request" />
+        <Patients className="from-doctor-patients" />
       </div>
     </div>
   );

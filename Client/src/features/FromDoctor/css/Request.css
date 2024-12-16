@@ -1,16 +1,32 @@
 .request {
   background-color: #bcd9ff;
-  width: 40%;
   display: flex;
   justify-content: space-between;
-  padding: 25px;
-  padding-bottom: 250px;
   border-radius: 30px;
   color: #141414;
   font-size: 30px;
   font-weight: 400;
   line-height: 35.55px;
   position: relative;
+  order: 3;
+
+  @media (max-width: 600px) {
+    width: 85%;
+    .request-text-container {
+      padding: 20px;
+      min-height: 180px;
+    }
+
+    p {
+      font-size: 24px;
+    }
+  }
+
+  @media (min-width: 600px) {
+    width: 40%;
+    padding: 25px;
+    padding-bottom: 250px;
+  }
 
   button {
     background: 0;
