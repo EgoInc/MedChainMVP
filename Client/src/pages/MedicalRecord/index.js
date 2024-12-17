@@ -59,7 +59,7 @@ function MedicalRecord() {
   }, [selectedFilters, existingNotes]);
 
   const handleAddNote = (newNote) => {
-    setExistingNotes((prevNotes) => [...prevNotes, newNote]);
+    setExistingNotes((prevNotes) => [newNote, ...prevNotes]);
     setSelectedFilters([]); // Сбросить фильтры при добавлении новой записи
   };
 
