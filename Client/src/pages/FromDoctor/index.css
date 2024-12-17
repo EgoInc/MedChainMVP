@@ -2,11 +2,11 @@
   margin-top: 5%;
   @media (max-width: 600px) {
     .main-part {
-      width: 85%;
+      width: 88%;
       display: flex;
       flex-direction: column;
       gap: 30px;
-      margin: 100px 7.5%;
+      margin: 100px 6%;
       align-items: center;
       text-align: left;
     }

@@ -45,7 +45,11 @@ const SendRequest = ({ onSubmit }) => {
   };
 
   if (isSubmitted) {
-    return <p className="send-request submitted">Заявка отправлена</p>;
+    return (
+      <div className="send-request submitted">
+        <p>Заявка отправлена</p>
+      </div>
+    );
   }
 
   return (

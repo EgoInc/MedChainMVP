@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../css/AddNote.css";
-import { ReactComponent as DoctorAvatar } from "../../../shared/Avatar.svg";
+import PatientAvatar from "../../FromDoctorRequests/components/PatientAvatar";
 import DoctorCard from "../../FromDoctor/components/DoctorCard";
 const AddNote = ({ onAddNote, closeForm }) => {
   const [type, setType] = useState("");
@@ -11,7 +11,7 @@ const AddNote = ({ onAddNote, closeForm }) => {
 
     const newNote = {
       id: Date.now(),
-      avatar: <DoctorAvatar />,
+      avatar: <PatientAvatar />,
       doctorLastName: "Новиков",
       doctorName: "Николай",
       doctorSecondName: "Александрович",
@@ -34,7 +34,7 @@ const AddNote = ({ onAddNote, closeForm }) => {
           <div className="select-and-submit">
             <div className="select-box">
               <h3>Выберите вид изменений:</h3>
-              <div className="labes-box">
+              <div className="labels-box">
                 <label>
                   <input
                     type="radio"
@@ -45,7 +45,7 @@ const AddNote = ({ onAddNote, closeForm }) => {
                   />
                   Анализы
                 </label>
-                <label>
+                <label className="right">
                   <input
                     type="radio"
                     name="noteType"
@@ -65,7 +65,7 @@ const AddNote = ({ onAddNote, closeForm }) => {
                   />
                   Выписанное лечение
                 </label>
-                <label>
+                <label className="right">
                   <input
                     type="radio"
                     name="noteType"
@@ -77,20 +77,22 @@ const AddNote = ({ onAddNote, closeForm }) => {
                 </label>
               </div>
             </div>
-            <button
-              type="submit"
-              className="save-button"
-              disabled={!type || !text}
-            >
-              Добавить запись
-            </button>
-            <button
-              className="cancel-button"
-              type="button"
-              onClick={() => closeForm()}
-            >
-              Отмена
-            </button>
+            <div className="add-note-two-buttons">
+              <button
+                type="submit"
+                className="save-button desktop"
+                disabled={!type || !text}
+              >
+                Добавить запись
+              </button>
+              <button
+                className="cancel-button desktop"
+                type="button"
+                onClick={() => closeForm()}
+              >
+                Отмена
+              </button>
+            </div>
           </div>
 
           <h4>Запишите изменения:</h4>
@@ -101,6 +103,22 @@ const AddNote = ({ onAddNote, closeForm }) => {
             onChange={(e) => setText(e.target.value)}
             placeholder="Тут пишутся внесенные изменения"
           ></textarea>
+          <div className="add-note-two-buttons">
+            <button
+              type="submit"
+              className="save-button mobile"
+              disabled={!type || !text}
+            >
+              Добавить запись
+            </button>
+            <button
+              className="cancel-button mobile"
+              type="button"
+              onClick={() => closeForm()}
+            >
+              Отмена
+            </button>
+          </div>
         </form>
       </div>
     </div>

@@ -16,11 +16,11 @@
     width: 100%;
     .request-text-container {
       padding: 20px;
-      min-height: 180px;
+      min-height: 140px;
     }
 
     p {
-      font-size: 24px;
+      font-size: 26px;
     }
   }
 

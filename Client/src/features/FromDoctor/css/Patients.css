@@ -11,7 +11,7 @@
     width: 100%;
     .patients-text-container {
       padding: 20px;
-      min-height: 180px;
+      min-height: 140px;
     }
 
     p {

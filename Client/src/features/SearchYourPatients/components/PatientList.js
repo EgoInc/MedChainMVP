@@ -9,7 +9,7 @@ const PatientList = ({ patients, searchFilter }) => {
   );
 
   return (
-    <div className="patient-list">
+    <div className="search-your-patients-patient-list">
       {filteredPatients.map((patient) => (
         <Patient
           patient_id={patient.patient_id}

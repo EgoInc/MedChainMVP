@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./index.css";
-import Logo from "../../shared/Logo.svg";
+import Logo from "../../shared/Logo";
 import MedicalRecordFilter from "../../features/MedicalRecord/components/MedicalRecordFilter";
 import AddNote from "../../features/MedicalRecord/components/AddNote";
 import Note from "../../features/MedicalRecord/components/Note";
-import { ReactComponent as PatientAvatar } from "../../shared/Avatar.svg";
+import PatientAvatar from "../../features/FromDoctorRequests/components/PatientAvatar";
 import NavPanel from "../../features/NavPanel/NavPanel";
 import { useParams } from "react-router-dom";
 
@@ -72,7 +72,7 @@ function MedicalRecord() {
   return (
     <div className="medical-record">
       <NavPanel routes={routes} />
-      <img src={Logo} alt="Logo" className="logo" />
+      <Logo className="logo" />
       <h2>Медицинская карта</h2>
       <div className="medical-record-menu">
         <MedicalRecordFilter

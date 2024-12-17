@@ -1,25 +1,61 @@
 .medical-record {
-  margin: 5% 0 0 11%;
-  width: 83%;
   display: flex;
   flex-direction: column;
   gap: 5px;
 
+  @media (max-width: 600px) {
+    width: 90%;
+    margin: 100px 5%;
+
+    .add-note-button {
+      width: 180px;
+      height: 50px;
+      font-size: 16px;
+      line-height: 18.96px;
+    }
+
+    .medical-record-menu {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      gap: 20px;
+      width: 100%;
+    }
+    h2 {
+      font-size: 26px;
+      line-height: 30.81px;
+      margin-bottom: 10px;
+    }
+  }
+
+  @media (min-width: 600px) {
+    margin: 5% 0 0 11%;
+    width: 83%;
+
+    .add-note-button {
+      padding: 35px 55px;
+      opacity: 0px;
+
+      font-size: 20px;
+      line-height: 23.7px;
+    }
+
+    h2 {
+      font-size: 48px;
+      line-height: 56.88px;
+      margin-bottom: 30px;
+    }
+  }
+
   .add-note-button {
     display: flex;
     align-items: center;
-
-    padding: 35px 55px;
-    gap: 0px;
-    border-radius: 40px;
+    justify-content: center;
     border: 0;
-    opacity: 0px;
+    border-radius: 40px;
     background-color: #adc4f7;
-
     font-family: Rubik;
-    font-size: 20px;
     font-weight: 400;
-    line-height: 23.7px;
   }
 
   .add-note-button:active {
@@ -48,18 +84,11 @@
     position: absolute;
     top: 5px;
     right: 5px;
-    width: 15%;
-    height: 15%;
-    max-width: 160px;
-    max-height: 160px;
   }
 
   h2 {
-    font-size: 48px;
     font-weight: 400;
-    line-height: 56.88px;
     text-align: left;
-    margin-bottom: 30px;
   }
 
   .icon svg {

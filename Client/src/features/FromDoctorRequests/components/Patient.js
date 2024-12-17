@@ -28,21 +28,23 @@ const Patient = ({ name, date_of_birth, status }) => {
       className={getClassStatus(status)}
       onClick={() => navigate(pathToPatientCard)}
     >
-      <PatientAvatar className="requests-avatar" />
-      <div className="patient-text-box">
-        <div className="patient-info">
-          <h3>{name}</h3>
-          <p className="date-of-birth">{date_of_birth}</p>
+      <div className="requests-patient-inner-box">
+        <PatientAvatar className="requests-avatar" />
+        <div className="patient-text-box">
+          <div className="patient-info">
+            <h3>{name}</h3>
+            <p className="date-of-birth">{date_of_birth}</p>
+          </div>
+          <p className="status">{status}</p>
         </div>
-        <p className="status">{status}</p>
-      </div>
 
-      <button
-        className="toggle-button"
-        onClick={() => navigate(pathToPatientCard)}
-      >
-        <Toggle />
-      </button>
+        <button
+          className="toggle-button"
+          onClick={() => navigate(pathToPatientCard)}
+        >
+          <Toggle />
+        </button>
+      </div>
     </div>
   );
 };

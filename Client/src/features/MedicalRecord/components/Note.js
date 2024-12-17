@@ -32,7 +32,7 @@ const Note = ({
               <h5>{location}</h5>
             </div>
           </div>
-          <h5>{type}</h5>
+          <h5 className="med-card-note-type">{type}</h5>
         </div>
 
         <div className="toggle-layer">

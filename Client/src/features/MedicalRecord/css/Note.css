@@ -1,21 +1,82 @@
 .note {
-  width: 100%;
-  min-width: 700px;
   margin: 0;
   background-color: #bcd9ff;
-
+  width: 100%;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  justify-content: center;
   position: relative;
 
-  padding: 15px;
+  @media (max-width: 600px) {
+    gap: 10px;
+    width: 100%;
+    justify-content: flex-start;
+    min-height: 90px;
 
-  .note-box {
-    padding: 35px 35px;
-    width: 95%;
+    .note-box {
+      padding: 15px;
+    }
+    h4 {
+      font-size: 18px;
+      line-height: 21.33px;
+    }
+
+    h5 {
+      font-size: 14px;
+      line-height: 16.59px;
+    }
+    .med-card-note-type {
+      display: none;
+    }
+    .expand-button {
+      bottom: 10px;
+      right: 15px;
+    }
+    .expand-button.expanded {
+      bottom: 15px;
+    }
+    .note-header {
+      gap: 10px;
+    }
+    .doctor-info {
+      gap: 5px;
+    }
+  }
+
+  @media (min-width: 600px) {
+    gap: 40px;
+
+    justify-content: center;
+
+    width: 100%;
+
+    min-width: 700px;
+
+    .note-box {
+      padding: 35px 35px;
+      width: 95%;
+    }
+    h4 {
+      font-size: 32px;
+      line-height: 37.92px;
+    }
+
+    h5 {
+      font-size: 28px;
+      line-height: 33.18px;
+    }
+
+    .expand-button {
+      bottom: 15px;
+      right: 35px;
+    }
+    .expand-button.expanded {
+      bottom: 25px;
+    }
+
+    .note-header {
+      gap: 20px;
+    }
   }
 
   .note-not-expanded {
@@ -30,24 +91,18 @@
   .note-header {
     margin: 0;
     display: flex;
-    gap: 20px;
   }
 
   h4 {
     font-family: Rubik;
-    font-size: 32px;
     font-weight: 400;
-    line-height: 37.92px;
     text-align: left;
-    margin: 5px 0;
   }
 
   h5 {
     margin: 0;
     font-family: Rubik;
-    font-size: 28px;
     font-weight: 400;
-    line-height: 33.18px;
     color: #656565;
   }
 
@@ -83,20 +138,16 @@
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
-    bottom: 15px;
-    right: 5px;
-    right: 35px;
   }
   .expand-button.expanded {
     transform: rotate(180deg);
-    bottom: 25px;
   }
-}
 
-.note.expanded {
-  min-height: 320px;
-}
+  .note.expanded {
+    min-height: 320px;
+  }
 
-.note:hover {
-  cursor: pointer;
+  .note:hover {
+    cursor: pointer;
+  }
 }
